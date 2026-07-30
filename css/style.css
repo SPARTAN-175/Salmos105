@@ -27,7 +27,9 @@ header{
     margin-bottom:20px;
     flex-wrap:wrap;
 }
-
+main{
+    padding:8px;
+}
 .titulo h1{
     color:#0A9F5A;
     font-size:2rem;
@@ -75,12 +77,11 @@ header{
 /* ========================= */
 
 #contenedorAcordes{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:15px;
-    overflow-x:auto;
-    padding-bottom:8px;
+    display:grid;
+    grid-template-columns:repeat(6, minmax(50px, 1fr));
+    gap:8px;
+    width:100%;
+    align-items:start;
 }
 
 .acorde{
@@ -92,12 +93,14 @@ header{
 }
 
 .acorde select{
-    width:80px;
+    width:100%;
+    max-width:55px;
     text-align:center;
     border:none;
     border-bottom:2px solid #0A9F5A;
     background:transparent;
-    font-size:15px;
+    font-size:13px;
+    padding:2px;
     font-weight:bold;
     outline:none;
 }
@@ -105,11 +108,14 @@ header{
 .acorde label{
     display:flex;
     margin-top:8px;
-    font-size:13px;
+    font-size:11px;
     align-items:center;
-    gap:5px;
+    gap:2px;
 }
-
+.acorde input[type="checkbox"]{
+    width:14px;
+    height:14px;
+}
 /* ========================= */
 /* RESULTADO */
 /* ========================= */
@@ -126,8 +132,9 @@ header{
 }
 
 .imagenAcorde img{
-    width:90px;
+    width:55px;
     border-radius:10px;
+    height:auto;
 }
 
 .imagenAcorde span{
