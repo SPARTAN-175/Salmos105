@@ -1,1 +1,318 @@
 
+/* ========================= */
+/* RESET */
+/* ========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f3f6f8;
+    color:#333;
+    padding:20px;
+}
+
+/* ========================= */
+/* HEADER */
+/* ========================= */
+
+header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:25px;
+
+    flex-wrap:wrap;
+    gap:15px;
+
+}
+
+header h1{
+
+    color:#0a9f5a;
+    font-size:30px;
+
+}
+
+header p{
+
+    color:#777;
+
+}
+
+#btnGuardar{
+
+    background:#0a9f5a;
+    color:white;
+
+    border:none;
+
+    padding:12px 20px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    transition:.25s;
+
+}
+
+#btnGuardar:hover{
+
+    background:#087f48;
+
+}
+
+/* ========================= */
+/* PANEL */
+/* ========================= */
+
+.panel{
+
+    background:white;
+
+    border-radius:15px;
+
+    padding:18px;
+
+    margin-bottom:20px;
+
+    box-shadow:0px 4px 12px rgba(0,0,0,.08);
+
+}
+
+.panel h2{
+
+    margin-bottom:15px;
+    color:#0a9f5a;
+
+}
+
+/* ========================= */
+/* ACORDES */
+/* ========================= */
+
+#contenedorAcordes{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+
+    gap:15px;
+
+}
+
+.acorde{
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    padding:12px;
+
+}
+
+.acorde select{
+
+    width:100%;
+
+    padding:8px;
+
+    margin-bottom:10px;
+
+}
+
+.acorde label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+}
+
+#btnAgregar{
+
+    margin-top:18px;
+
+    width:100%;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#e7f8ef;
+
+    color:#0a9f5a;
+
+    cursor:pointer;
+
+}
+
+/* ========================= */
+/* RESULTADO */
+/* ========================= */
+
+#resultado{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+
+    gap:15px;
+
+}
+
+.imagenAcorde{
+
+    text-align:center;
+
+}
+
+.imagenAcorde img{
+
+    width:100%;
+
+    max-width:140px;
+
+    border-radius:10px;
+
+    border:1px solid #ddd;
+
+}
+
+.imagenAcorde span{
+
+    display:block;
+
+    margin-top:10px;
+
+    font-weight:bold;
+
+}
+
+/* ========================= */
+/* TRANSPONER */
+/* ========================= */
+
+.transponer{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.transponer button{
+
+    width:45px;
+
+    height:45px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#0a9f5a;
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+}
+
+.transponer span{
+
+    font-size:24px;
+
+    font-weight:bold;
+
+}
+
+/* ========================= */
+/* BUSCADOR */
+/* ========================= */
+
+input[type="search"]{
+
+    width:100%;
+
+    padding:12px;
+
+    border:1px solid #ccc;
+
+    border-radius:10px;
+
+    margin-bottom:15px;
+
+}
+
+/* ========================= */
+/* TABLA */
+/* ========================= */
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+th{
+
+    background:#0a9f5a;
+    color:white;
+
+    padding:10px;
+
+}
+
+td{
+
+    padding:10px;
+
+    border-bottom:1px solid #eee;
+
+}
+
+tr:hover{
+
+    background:#f5fff8;
+
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media(max-width:700px){
+
+    header{
+
+        flex-direction:column;
+        align-items:flex-start;
+
+    }
+
+    #btnGuardar{
+
+        width:100%;
+
+    }
+
+  }
