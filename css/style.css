@@ -115,9 +115,10 @@ header{
 /* ========================= */
 
 #resultado{
-    display:grid;
-    grid-template-columns:repeat(6,1fr);
-    gap:12px;
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    overflow-x:auto;
 }
 
 .imagenAcorde{
@@ -125,12 +126,8 @@ header{
 }
 
 .imagenAcorde img{
-    width:100%;
-    max-width:120px;
-    border:1px solid #ddd;
+    width:90px;
     border-radius:10px;
-    background:white;
-    padding:5px;
 }
 
 .imagenAcorde span{
