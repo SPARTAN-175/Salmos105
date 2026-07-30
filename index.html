@@ -1,1 +1,175 @@
 
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Salmos 105</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <div class="titulo">
+
+            <h1>🎵 Salmos 105</h1>
+
+            <p>Con tecnología de <strong>MOTI</strong></p>
+
+        </div>
+
+        <button id="btnGuardar">
+            Guardar configuración
+        </button>
+
+    </header>
+
+    <main>
+
+        <!-- =============================== -->
+        <!-- ACORDES -->
+        <!-- =============================== -->
+
+        <section class="panel">
+
+            <h2>Acordes</h2>
+
+            <div id="contenedorAcordes">
+
+                <!-- Acorde 1 -->
+                <div class="acorde">
+
+                    <select>
+
+                        <option>Do</option>
+                        <option>Do#</option>
+                        <option>Re</option>
+                        <option>Re#</option>
+                        <option>Mi</option>
+                        <option>Fa</option>
+                        <option>Fa#</option>
+                        <option>Sol</option>
+                        <option>Sol#</option>
+                        <option>La</option>
+                        <option>La#</option>
+                        <option>Si</option>
+
+                    </select>
+
+                    <label>
+
+                        <input type="checkbox">
+
+                        Menor
+
+                    </label>
+
+                    <label>
+
+                        <input type="checkbox">
+
+                        Séptima
+
+                    </label>
+
+                </div>
+
+            </div>
+
+            <button id="btnAgregar">
+
+                + Agregar acorde
+
+            </button>
+
+        </section>
+
+        <!-- =============================== -->
+        <!-- RESULTADO -->
+        <!-- =============================== -->
+
+        <section class="panel">
+
+            <h2>Resultado</h2>
+
+            <div id="resultado">
+
+                <div class="imagenAcorde">
+
+                    <img src="assets/acordes/C.png" alt="">
+
+                    <span>Do</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =============================== -->
+        <!-- TRANSPONER -->
+        <!-- =============================== -->
+
+        <section class="panel">
+
+            <h2>Semitonos</h2>
+
+            <div class="transponer">
+
+                <button>-</button>
+
+                <span>0</span>
+
+                <button>+</button>
+
+            </div>
+
+        </section>
+
+        <!-- =============================== -->
+        <!-- CONFIGURACIONES -->
+        <!-- =============================== -->
+
+        <section class="panel">
+
+            <input
+                type="search"
+                placeholder="Buscar configuración..."
+            >
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Nombre</th>
+
+                        <th>Tono</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>Alabanza Domingo</td>
+
+                        <td>Do</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Ensayo Jóvenes</td>
+
+                        <td>Re
