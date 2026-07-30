@@ -75,30 +75,39 @@ header{
 /* ========================= */
 
 #contenedorAcordes{
-    display:grid;
-    grid-template-columns:repeat(6,1fr);
-    gap:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:15px;
+    overflow-x:auto;
+    padding-bottom:8px;
 }
 
 .acorde{
-    border:1px solid #ddd;
-    border-radius:12px;
-    padding:12px;
-    background:#fafafa;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    padding:5px;
 }
 
 .acorde select{
-    width:100%;
-    padding:8px;
-    border-radius:8px;
-    border:1px solid #ccc;
-    margin-bottom:10px;
+    width:80px;
+    text-align:center;
+    border:none;
+    border-bottom:2px solid #0A9F5A;
+    background:transparent;
+    font-size:15px;
+    font-weight:bold;
+    outline:none;
 }
 
 .acorde label{
-    display:block;
+    display:flex;
     margin-top:8px;
-    font-size:14px;
+    font-size:13px;
+    align-items:center;
+    gap:5px;
 }
 
 /* ========================= */
