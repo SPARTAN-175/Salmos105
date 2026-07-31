@@ -4,6 +4,7 @@
 // =====================================
 
 import { actualizarTodos } from "./ui.js";
+import { establecerActual} from "./eliminar.js";
 
 let alabanzaActual = null;
 let indiceConfiguracion = 0;
@@ -70,6 +71,14 @@ btnEliminar.classList.remove("oculto");
 
     // Reiniciar transposición
     document.getElementById("valorSemitono").textContent = "0";
+
+    establecerActual(
+
+    alabanza,
+
+    indice
+
+);
 
 }
 
