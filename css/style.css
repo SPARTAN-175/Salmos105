@@ -683,5 +683,73 @@ tr:last-child td{
     }
 
 }
+/*==================================
+        BIBLIOTECA
+===================================*/
 
+.tarjetaAlabanza{
+
+    background:white;
+
+    border-radius:16px;
+
+    padding:16px;
+
+    margin-bottom:12px;
+
+    cursor:pointer;
+
+    transition:.15s;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+
+}
+
+.tarjetaAlabanza:active{
+
+    transform:scale(.98);
+
+}
+
+.tarjetaTitulo{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    color:#222;
+
+}
+
+.tarjetaTitulo span{
+
+    color:#10A651;
+
+}
+
+.tarjetaSubtitulo{
+
+    margin-top:8px;
+
+    color:#666;
+
+    font-size:14px;
+
+}
+
+.sinDatos{
+
+    text-align:center;
+
+    padding:30px;
+
+    color:#888;
+
+}
 
