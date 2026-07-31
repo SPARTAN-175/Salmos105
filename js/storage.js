@@ -131,6 +131,74 @@ export function agregarConfiguracion(
 }
 
 /**
+ * Elimina una configuración
+ */
+export function eliminarConfiguracion(
+
+    nombre,
+
+    indice
+
+){
+
+    const biblioteca = obtenerBiblioteca();
+
+    const alabanza = biblioteca.find(
+
+        a =>
+
+        a.nombre.toLowerCase() ===
+
+        nombre.toLowerCase()
+
+    );
+
+    if(!alabanza) return false;
+
+    alabanza.configuraciones.splice(
+
+        indice,
+
+        1
+
+    );
+
+    // Si ya no quedan configuraciones,
+    // eliminar la alabanza completa.
+
+    if(alabanza.configuraciones.length===0){
+
+        const nuevaBiblioteca = biblioteca.filter(
+
+            a =>
+
+            a.nombre.toLowerCase() !==
+
+            nombre.toLowerCase()
+
+        );
+
+        guardarBiblioteca(
+
+            nuevaBiblioteca
+
+        );
+
+        return "alabanza";
+
+    }
+
+    guardarBiblioteca(
+
+        biblioteca
+
+    );
+
+    return "configuracion";
+
+}
+
+/**
  * Elimina una alabanza completa
  */
 export function eliminarAlabanza(nombre) {
