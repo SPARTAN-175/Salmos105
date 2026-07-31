@@ -35,6 +35,11 @@ export function cargarConfiguracion(alabanza, indice = 0) {
     const selector =
         document.getElementById("selectorVersion");
 
+    const btnEliminar =
+    document.getElementById("btnEliminarConfiguracion");
+
+btnEliminar.classList.remove("oculto");
+
     if (alabanza.configuraciones.length > 1) {
 
         selector.classList.remove("oculto");
