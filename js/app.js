@@ -1,10 +1,12 @@
 import { crearAcordes } from "./acordes.js";
 import "./transponer.js";
 import { guardarConfiguracion } from "./guardar.js";
+import { actualizarLista } from "./lista.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
     crearAcordes();
+    actualizarLista();
 
     document
     .getElementById("btnGuardar")
