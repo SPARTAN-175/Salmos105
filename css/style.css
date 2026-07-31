@@ -374,3 +374,89 @@ tr:last-child td{
     }
 
 }
+
+/*==================================
+        VISOR DE ACORDES
+===================================*/
+
+.visor{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.85);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+    opacity:1;
+
+    transition:.18s;
+
+}
+
+.oculto{
+
+    opacity:0;
+
+    pointer-events:none;
+
+}
+
+.visorContenido{
+
+    text-align:center;
+
+    animation:zoom .18s ease;
+
+}
+
+#tituloVisor{
+
+    color:white;
+
+    font-size:24px;
+
+    margin-bottom:20px;
+
+}
+
+#imagenVisor{
+
+    width:90vw;
+
+    max-width:420px;
+
+    border-radius:16px;
+
+    background:white;
+
+    padding:12px;
+
+}
+
+@keyframes zoom{
+
+    from{
+
+        transform:scale(.85);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
