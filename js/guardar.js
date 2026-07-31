@@ -15,6 +15,7 @@ import {
 } from "./modal.js";
 
 import { actualizarLista } from "./lista.js";
+import { mostrarToast } from "./toast.js";
 /**
  * Obtiene la configuración actual
  */
@@ -106,7 +107,9 @@ function guardar(nombre) {
         cerrarModal();
         actualizarLista();
 
-        alert("✅ Alabanza guardada.");
+        mostrarToast(
+    "Alabanza guardada."
+);
 
         return;
 
@@ -125,13 +128,10 @@ function guardar(nombre) {
 
     if (repetida) {
 
-        alert(
-
-            "Ya existe una configuración en " +
-
-            configuracion.tono
-
-        );
+        mostrarToast(
+    "Ya existe esa tonalidad.",
+    "advertencia"
+);
 
         return;
 
@@ -148,6 +148,8 @@ function guardar(nombre) {
     cerrarModal();
     actualizarLista();
 
-    alert("✅ Configuración agregada.");
+    mostrarToast(
+    "Configuración agregada."
+);
 
 }
