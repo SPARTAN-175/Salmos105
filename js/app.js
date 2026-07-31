@@ -1,3 +1,4 @@
+import { iniciarBuscador } from "./buscar.js";
 import { crearAcordes } from "./acordes.js";
 import "./transponer.js";
 import { guardarConfiguracion } from "./guardar.js";
@@ -11,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     crearAcordes();
     actualizarLista();
+    iniciarBuscador();
 
     document
     .getElementById("btnGuardar")
