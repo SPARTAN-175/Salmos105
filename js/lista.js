@@ -2,6 +2,7 @@
 // SALMOS 105
 // Lista de alabanzas
 // =====================================
+import { cargarConfiguracion } from "./cargar.js";
 
 import { obtenerAlabanzas } from "./storage.js";
 
@@ -77,15 +78,9 @@ export function actualizarLista() {
 
         tarjeta.addEventListener("click", () => {
 
-            console.log(
-                "Abrir:",
-                alabanza.nombre
-            );
+    cargarConfiguracion(alabanza);
 
-            // Aquí después cargaremos
-            // automáticamente la alabanza.
-
-        });
+});
 
         contenedor.appendChild(tarjeta);
 
