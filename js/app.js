@@ -7,6 +7,7 @@ import {
     siguienteConfiguracion,
     anteriorConfiguracion
 } from "./cargar.js";
+import {eliminarActual} from "./eliminar.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -33,6 +34,22 @@ document
     .addEventListener(
         "click",
         anteriorConfiguracion
+    );
+
+document
+
+    .getElementById(
+
+        "btnEliminarConfiguracion"
+
+    )
+
+    .addEventListener(
+
+        "click",
+
+        eliminarActual
+
     );
 
 });
