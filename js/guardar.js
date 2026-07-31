@@ -4,12 +4,15 @@
 // =====================================
 
 import {
-
+    buscarAlabanza,
     agregarAlabanza,
-    agregarConfiguracion,
-    buscarAlabanza
-
+    agregarConfiguracion
 } from "./storage.js";
+
+import {
+    abrirModal,
+    cerrarModal
+} from "./modal.js";
 
 /**
  * Obtiene la configuración actual
@@ -51,35 +54,55 @@ function obtenerConfiguracionActual() {
 }
 
 /**
- * Guarda la configuración
+ * Guarda utilizando el modal
  */
 export function guardarConfiguracion() {
 
-    const nombre = prompt(
+    abrirModal({
 
-        "Nombre de la alabanza"
+        tituloTexto: "Guardar alabanza",
 
-    );
+        mensajeTexto:
+            "Escribe el nombre de la alabanza.",
+
+        placeholder:
+            "Ejemplo: Porque Él Vive",
+
+        textoBoton: "Guardar",
+
+        onAceptar: guardar
+
+    });
+
+}
+
+/**
+ * Procesa el guardado
+ */
+function guardar(nombre) {
 
     if (!nombre) return;
 
     const configuracion =
         obtenerConfiguracionActual();
 
-    const existe =
+    const alabanza =
         buscarAlabanza(nombre);
 
-    if (!existe) {
+    // ==========================
+    // NUEVA ALABANZA
+    // ==========================
+
+    if (!alabanza) {
 
         agregarAlabanza(nombre);
 
         agregarConfiguracion(
-
             nombre,
-
             configuracion
-
         );
+
+        cerrarModal();
 
         alert("✅ Alabanza guardada.");
 
@@ -87,22 +110,16 @@ export function guardarConfiguracion() {
 
     }
 
-    const agregar = confirm(
+    // ==========================
+    // EXISTE
+    // ==========================
 
-        `La alabanza "${nombre}" ya existe.\n\n` +
+    const repetida =
+        alabanza.configuraciones.find(
 
-        "¿Deseas agregar esta nueva configuración?"
+            c => c.tono === configuracion.tono
 
-    );
-
-    if (!agregar) return;
-
-    // Evitar guardar dos veces la misma tonalidad
-    const repetida = existe.configuraciones.find(
-
-        c => c.tono === configuracion.tono
-
-    );
+        );
 
     if (repetida) {
 
@@ -125,6 +142,8 @@ export function guardarConfiguracion() {
         configuracion
 
     );
+
+    cerrarModal();
 
     alert("✅ Configuración agregada.");
 
