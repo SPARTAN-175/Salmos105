@@ -8,6 +8,7 @@ export const TOTAL_ACORDES = 6;
 
 // Notas musicales
 export const NOTAS = [
+
     "Do",
     "Do#",
     "Re",
@@ -20,29 +21,45 @@ export const NOTAS = [
     "La",
     "La#",
     "Si"
+
 ];
 
-// Conversión de notas (Español -> Internacional)
+// Conversión de nombres
+// Se usa "S" para los sostenidos
+// para evitar problemas en las rutas.
+
 export const CODIGOS = {
-    "Do": "C",
-    "Do#": "C#",
-    "Re": "D",
-    "Re#": "D#",
-    "Mi": "E",
-    "Fa": "F",
-    "Fa#": "F#",
-    "Sol": "G",
-    "Sol#": "G#",
-    "La": "A",
-    "La#": "A#",
-    "Si": "B"
+
+    "Do": "Do",
+    "Do#": "DoS",
+
+    "Re": "Re",
+    "Re#": "ReS",
+
+    "Mi": "Mi",
+
+    "Fa": "Fa",
+    "Fa#": "FaS",
+
+    "Sol": "Sol",
+    "Sol#": "SolS",
+
+    "La": "La",
+    "La#": "LaS",
+
+    "Si": "Si"
+
 };
 
-// Instrumento soportado
+// Instrumento actual
+
 export const INSTRUMENTO = "guitarra";
 
-// Ruta base de las imágenes
-export const RUTA_ACORDES = `assets/acordes/${INSTRUMENTO}/`;
+// Ruta donde estarán las imágenes
 
-// Nombre del caché del Service Worker
+export const RUTA_ACORDES =
+    `assets/acordes/${INSTRUMENTO}/`;
+
+// Nombre del caché
+
 export const CACHE_NAME = "salmos105-v2";
