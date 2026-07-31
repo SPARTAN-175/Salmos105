@@ -2,6 +2,10 @@ import { crearAcordes } from "./acordes.js";
 import "./transponer.js";
 import { guardarConfiguracion } from "./guardar.js";
 import { actualizarLista } from "./lista.js";
+import {
+    siguienteConfiguracion,
+    anteriorConfiguracion
+} from "./cargar.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -13,6 +17,20 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener(
         "click",
         guardarConfiguracion
+    );
+
+    document
+    .getElementById("btnSiguienteVersion")
+    .addEventListener(
+        "click",
+        siguienteConfiguracion
+    );
+
+document
+    .getElementById("btnAnteriorVersion")
+    .addEventListener(
+        "click",
+        anteriorConfiguracion
     );
 
 });
