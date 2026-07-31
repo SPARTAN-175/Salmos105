@@ -1,4 +1,5 @@
 import { crearAcordes } from "./acordes.js";
+import "./transponer.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
