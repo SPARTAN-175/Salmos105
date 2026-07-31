@@ -753,3 +753,91 @@ tr:last-child td{
 
 }
 
+/*==================================
+            TOAST
+===================================*/
+
+.toast{
+
+    position:fixed;
+
+    left:50%;
+
+    bottom:25px;
+
+    transform:translateX(-50%);
+
+    min-width:260px;
+
+    max-width:90%;
+
+    background:#222;
+
+    color:#fff;
+
+    padding:14px 18px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    z-index:999999;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.25);
+
+    transition:.25s;
+
+}
+
+.toast.oculto{
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transform:translate(-50%,25px);
+
+}
+
+.toast.exito{
+
+    background:#10A651;
+
+}
+
+.toast.error{
+
+    background:#D32F2F;
+
+}
+
+.toast.advertencia{
+
+    background:#F57C00;
+
+}
+
+#toastIcono{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+#toastTexto{
+
+    flex:1;
+
+    font-size:15px;
+
+}
+
+
+
+
+
