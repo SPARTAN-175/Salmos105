@@ -3,63 +3,92 @@ import {
     RUTA_ACORDES
 } from "./constantes.js";
 
-/**
- * Construye el nombre del archivo de la imagen
- * Ejemplos:
- * C.png
- * Cm.png
- * C7.png
- * Cm7.png
- */
-function obtenerRutaImagen(nota, menor, septima) {
+function obtenerRutaImagen(nota, menor, septima){
 
     let nombre = CODIGOS[nota];
 
-    if (menor) {
+    if(menor){
+
         nombre += "m";
+
     }
 
-    if (septima) {
+    if(septima){
+
         nombre += "7";
+
     }
 
     return `${RUTA_ACORDES}${nombre}.png`;
 
 }
 
-/**
- * Actualiza la imagen de un acorde
- */
-export function actualizarImagen(indice) {
+export function actualizarImagen(i){
 
-    const nota = document.getElementById(`nota${indice}`);
-    const menor = document.getElementById(`menor${indice}`);
-    const septima = document.getElementById(`septima${indice}`);
-    const imagen = document.getElementById(`img${indice}`);
+    const nota = document.getElementById(`nota${i}`);
+    const menor = document.getElementById(`menor${i}`);
+    const septima = document.getElementById(`septima${i}`);
+    const imagen = document.getElementById(`img${i}`);
 
-    if (!nota || !menor || !septima || !imagen) return;
+    if(!nota || !imagen) return;
 
-    imagen.src = obtenerRutaImagen(
+    const ruta = obtenerRutaImagen(
         nota.value,
         menor.checked,
         septima.checked
     );
 
+    imagen.src = ruta;
+
     imagen.alt = nota.value;
+
+    imagen.onclick = () => abrirVisor(
+        ruta,
+        nota.value +
+        (menor.checked ? "m" : "") +
+        (septima.checked ? "7" : "")
+    );
 
 }
 
-/**
- * Actualiza todos los acordes
- */
-export function actualizarTodos() {
+export function actualizarTodos(){
 
-    const total = document.querySelectorAll(".acorde").length;
+    const total =
+        document.querySelectorAll(".acorde").length;
 
-    for (let i = 1; i <= total; i++) {
+    for(let i=1;i<=total;i++){
 
         actualizarImagen(i);
 
     }
 
 }
+
+function abrirVisor(imagen,nombre){
+
+    document
+        .getElementById("tituloVisor")
+        .textContent = nombre;
+
+    document
+        .getElementById("imagenVisor")
+        .src = imagen;
+
+    document
+        .getElementById("visorAcorde")
+        .classList.remove("oculto");
+
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+    const visor =
+        document.getElementById("visorAcorde");
+
+    visor.addEventListener("click",()=>{
+
+        visor.classList.add("oculto");
+
+    });
+
+});
