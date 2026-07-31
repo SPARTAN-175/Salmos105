@@ -1,4 +1,3 @@
-
 // =====================================
 // MODAL SALMOS 105
 // =====================================
@@ -16,6 +15,9 @@ const btnAceptar =
 const btnCancelar =
     document.getElementById("btnCancelarModal");
 
+/**
+ * Modal con campo de texto
+ */
 export function abrirModal({
 
     tituloTexto = "",
@@ -36,6 +38,8 @@ export function abrirModal({
 
     mensaje.textContent = mensajeTexto;
 
+    input.style.display = "block";
+
     input.placeholder = placeholder;
 
     input.value = valor;
@@ -50,9 +54,46 @@ export function abrirModal({
 
 }
 
+/**
+ * Modal de confirmación
+ */
+export function abrirConfirmacion({
+
+    tituloTexto = "",
+
+    mensajeTexto = "",
+
+    textoBoton = "Aceptar",
+
+    onAceptar
+
+}){
+
+    titulo.textContent = tituloTexto;
+
+    mensaje.textContent = mensajeTexto;
+
+    // Ocultar el input
+    input.style.display = "none";
+
+    btnAceptar.textContent = textoBoton;
+
+    aceptar = onAceptar;
+
+    modal.classList.remove("oculto");
+
+}
+
+/**
+ * Cerrar modal
+ */
 export function cerrarModal(){
 
     modal.classList.add("oculto");
+
+    input.style.display = "block";
+
+    input.value = "";
 
 }
 
@@ -72,7 +113,19 @@ btnAceptar.onclick=()=>{
 
     if(aceptar){
 
-        aceptar(input.value.trim());
+        if(input.style.display==="none"){
+
+            aceptar();
+
+        }else{
+
+            aceptar(
+
+                input.value.trim()
+
+            );
+
+        }
 
     }
 
