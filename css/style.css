@@ -838,6 +838,38 @@ tr:last-child td{
 }
 
 
+/*==================================
+    ELIMINAR CONFIGURACIÓN
+===================================*/
 
+.btnEliminar{
+
+    margin-top:16px;
+
+    width:100%;
+
+    height:46px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#D32F2F;
+
+    color:#fff;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+.btnEliminar:active{
+
+    transform:scale(.98);
+
+}
 
 
