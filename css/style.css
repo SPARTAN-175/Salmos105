@@ -169,19 +169,27 @@ main{
 
     display:flex;
 
+    justify-content:center;
+
     align-items:center;
 
-    gap:3px;
+    gap:6px;
 
-    font-size:11px;
+    margin-top:6px;
+
+    font-size:12px;
+
+    cursor:pointer;
 
 }
 
 .acorde input[type=checkbox]{
 
-    width:15px;
+    width:22px;
 
-    height:15px;
+    height:22px;
+
+    accent-color:#10A651;
 
 }
 
