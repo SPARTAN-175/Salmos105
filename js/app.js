@@ -1,9 +1,17 @@
 import { crearAcordes } from "./acordes.js";
 import "./transponer.js";
+import { guardarConfiguracion } from "./guardar.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
     crearAcordes();
+
+    document
+    .getElementById("btnGuardar")
+    .addEventListener(
+        "click",
+        guardarConfiguracion
+    );
 
 });
 
