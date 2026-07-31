@@ -14,6 +14,7 @@ import {
     cerrarModal
 } from "./modal.js";
 
+import { actualizarLista } from "./lista.js";
 /**
  * Obtiene la configuración actual
  */
@@ -103,6 +104,7 @@ function guardar(nombre) {
         );
 
         cerrarModal();
+        actualizarLista();
 
         alert("✅ Alabanza guardada.");
 
@@ -144,6 +146,7 @@ function guardar(nombre) {
     );
 
     cerrarModal();
+    actualizarLista();
 
     alert("✅ Configuración agregada.");
 
