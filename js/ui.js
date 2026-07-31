@@ -1,77 +1,65 @@
-// =====================================
-// SALMOS 105
-// UI
-// =====================================
-
-const CODIGOS = {
-    "Do": "C",
-    "Do#": "C#",
-    "Re": "D",
-    "Re#": "D#",
-    "Mi": "E",
-    "Fa": "F",
-    "Fa#": "F#",
-    "Sol": "G",
-    "Sol#": "G#",
-    "La": "A",
-    "La#": "A#",
-    "Si": "B"
-};
+import {
+    CODIGOS,
+    RUTA_ACORDES
+} from "./constantes.js";
 
 /**
- * Obtiene el nombre del archivo
+ * Construye el nombre del archivo de la imagen
+ * Ejemplos:
+ * C.png
+ * Cm.png
+ * C7.png
+ * Cm7.png
  */
-export function obtenerImagen(nota, menor, septima){
+function obtenerRutaImagen(nota, menor, septima) {
 
-    let archivo = CODIGOS[nota];
+    let nombre = CODIGOS[nota];
 
-    if(menor){
-
-        archivo += "m";
-
+    if (menor) {
+        nombre += "m";
     }
 
-    if(septima){
-
-        archivo += "7";
-
+    if (septima) {
+        nombre += "7";
     }
 
-    return `assets/acordes/guitarra/${archivo}.png`;
+    return `${RUTA_ACORDES}${nombre}.png`;
 
 }
 
 /**
- * Actualiza una imagen
+ * Actualiza la imagen de un acorde
  */
-export function actualizarImagen(indice){
+export function actualizarImagen(indice) {
 
-    const nota = document.getElementById(`nota${indice}`).value;
-
-    const menor = document.getElementById(`menor${indice}`).checked;
-
-    const septima = document.getElementById(`septima${indice}`).checked;
-
+    const nota = document.getElementById(`nota${indice}`);
+    const menor = document.getElementById(`menor${indice}`);
+    const septima = document.getElementById(`septima${indice}`);
     const imagen = document.getElementById(`img${indice}`);
 
-    const texto = document.getElementById(`txt${indice}`);
+    if (!nota || !menor || !septima || !imagen) return;
 
-    imagen.src = obtenerImagen(nota, menor, septima);
+    imagen.src = obtenerRutaImagen(
+        nota.value,
+        menor.checked,
+        septima.checked
+    );
 
-    let nombre = nota;
+    imagen.alt = nota.value;
 
-    if(menor){
+}
 
-        nombre += "m";
+/**
+ * Actualiza todos los acordes
+ */
+export function actualizarTodos() {
+
+    const total = document.querySelectorAll(".acorde").length;
+
+    for (let i = 1; i <= total; i++) {
+
+        actualizarImagen(i);
 
     }
-
-    if(septima){
-
-        nombre += "7";
-
-    }
-
-    texto.textContent = nombre;
 
 }
