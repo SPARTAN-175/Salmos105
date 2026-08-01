@@ -1,26 +1,41 @@
 // ================================
-// SALMOS 105
+// SALMOS 115
 // Service Worker
 // ================================
 
-const CACHE_NAME = "salmos105-v2.7";
+const CACHE_NAME = "salmos115-v3.0";
 
-// Archivos que siempre estarán disponibles offline
+// Archivos disponibles sin internet
 const ARCHIVOS = [
 
+    // Principal
+
     "./",
-
     "./index.html",
-
     "./manifest.json",
+
+    // CSS
 
     "./css/style.css",
 
+    // JavaScript
+
     "./js/app.js",
     "./js/acordes.js",
-    "./js/transponer.js",
+    "./js/biblioteca.js",
+    "./js/buscar.js",
+    "./js/cargar.js",
+    "./js/constantes.js",
+    "./js/eliminar.js",
+    "./js/guardar.js",
+    "./js/lista.js",
+    "./js/modal.js",
     "./js/storage.js",
+    "./js/toast.js",
+    "./js/transponer.js",
     "./js/ui.js",
+
+    // Iconos
 
     "./assets/icon-192.png",
     "./assets/icon-512.png"
@@ -33,13 +48,13 @@ const ARCHIVOS = [
 
 self.addEventListener("install", event => {
 
-    console.log("📦 Instalando Salmos 105...");
+    console.log("📦 Instalando Salmos 115...");
 
     event.waitUntil(
 
         caches.open(CACHE_NAME)
 
-        .then(cache => cache.addAll(ARCHIVOS))
+            .then(cache => cache.addAll(ARCHIVOS))
 
     );
 
@@ -91,17 +106,59 @@ self.addEventListener("fetch", event => {
 
         caches.match(event.request)
 
-        .then(response => {
+            .then(response => {
 
-            if (response) {
+                if (response) {
 
-                return response;
+                    return response;
 
-            }
+                }
 
-            return fetch(event.request);
+                return fetch(event.request)
 
-        })
+                    .then(networkResponse => {
+
+                        // Guarda automáticamente imágenes,
+                        // CSS y JS nuevos.
+
+                        if (
+
+                            event.request.method === "GET" &&
+
+                            (
+                                event.request.url.endsWith(".png") ||
+                                event.request.url.endsWith(".jpg") ||
+                                event.request.url.endsWith(".jpeg") ||
+                                event.request.url.endsWith(".svg") ||
+                                event.request.url.endsWith(".css") ||
+                                event.request.url.endsWith(".js")
+                            )
+
+                        ) {
+
+                            const copia = networkResponse.clone();
+
+                            caches.open(CACHE_NAME)
+
+                                .then(cache => {
+
+                                    cache.put(event.request, copia);
+
+                                });
+
+                        }
+
+                        return networkResponse;
+
+                    })
+
+                    .catch(() => {
+
+                        return response;
+
+                    });
+
+            })
 
     );
 
