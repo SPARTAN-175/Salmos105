@@ -47,36 +47,104 @@ console.log(
 console.log("Muestras:", audio.length);
 
 // =====================================
-// PRIMERA PRUEBA CON HPCP
+// ANALIZAR TODA LA CAPTURA
 // =====================================
 
 const frameSize = 4096;
+const hopSize = 2048;
 
-// Tomamos un fragmento del centro de la grabación
-const inicio = Math.floor((audio.length - frameSize) / 2);
+const promedio = new Float32Array(12);
 
-const frame = audio.slice(
+let cantidadFrames = 0;
 
-    inicio,
+for (
 
-    inicio + frameSize
+    let inicio = 0;
+
+    inicio + frameSize <= audio.length;
+
+    inicio += hopSize
+
+){
+
+    const frame = audio.slice(
+
+        inicio,
+
+        inicio + frameSize
+
+    );
+
+    try{
+
+        const hpcp = extractor.hpcpExtractor(
+
+            frame,
+
+            sampleRate
+
+        );
+
+        for(
+
+            let i=0;
+
+            i<12;
+
+            i++
+
+        ){
+
+            promedio[i] += hpcp[i];
+
+        }
+
+        cantidadFrames++;
+
+    }
+
+    catch(error){
+
+        console.warn(
+
+            "Frame ignorado",
+
+            error
+
+        );
+
+    }
+
+}
+
+console.log(
+
+    "Frames analizados:",
+
+    cantidadFrames
 
 );
 
-console.log("🎵 Analizando frame:", frame.length);
+// Promedio
 
-const hpcp = extractor.hpcpExtractor(
+for(
 
-    frame,
+    let i=0;
 
-    sampleRate
+    i<12;
 
-);
+    i++
 
-console.log("🎼 HPCP obtenido:");
+){
 
-console.log(hpcp);
+    promedio[i] /= cantidadFrames;
 
-return hpcp;
+}
+
+console.log("🎼 HPCP Promedio:");
+
+console.log(promedio);
+
+return promedio;
 
 }
