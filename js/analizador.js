@@ -28,40 +28,6 @@ function calcularRMS(frame){
 }
 
 /*=====================================
-    NORMALIZAR VECTOR
-=====================================*/
-
-function normalizar(vector){
-
-    let maximo = 0;
-
-    for(let i = 0; i < vector.length; i++){
-
-        if(vector[i] > maximo){
-
-            maximo = vector[i];
-
-        }
-
-    }
-
-    if(maximo === 0){
-
-        return vector;
-
-    }
-
-    for(let i = 0; i < vector.length; i++){
-
-        vector[i] /= maximo;
-
-    }
-
-    return vector;
-
-}
-
-/*=====================================
     ANALIZAR AUDIO
 =====================================*/
 
@@ -132,9 +98,10 @@ export async function analizarAudio(audio, sampleRate){
 
     // ==========================
     // SEGUNDA PASADA
+    // EXTRAER HPCP
     // ==========================
 
-    const promedio = new Float32Array(12);
+    const listaHPCP = [];
 
     let framesUtiles = 0;
 
@@ -156,19 +123,7 @@ export async function analizarAudio(audio, sampleRate){
 
             );
 
-            for(
-
-                let i = 0;
-
-                i < 12;
-
-                i++
-
-            ){
-
-                promedio[i] += hpcp[i];
-
-            }
+            listaHPCP.push(hpcp);
 
             framesUtiles++;
 
@@ -176,7 +131,13 @@ export async function analizarAudio(audio, sampleRate){
 
         catch(error){
 
-            console.warn(error);
+            console.warn(
+
+                "Error analizando frame:",
+
+                error
+
+            );
 
         }
 
@@ -195,71 +156,29 @@ export async function analizarAudio(audio, sampleRate){
     );
 
     // ==========================
-    // PROMEDIO
+    // DEVOLVER RESULTADO
     // ==========================
 
-    if(framesUtiles === 0){
+    if(listaHPCP.length === 0){
 
         console.warn(
 
-            "No hubo suficiente audio."
+            "⚠ No se encontró audio válido."
 
         );
 
-        return null;
+        return [];
 
     }
 
-    for(
+    console.log(
 
-        let i = 0;
+        "🎼 HPCP válidos:",
 
-        i < 12;
-
-        i++
-
-    ){
-
-        promedio[i] /= framesUtiles;
-
-    }
-
-    normalizar(promedio);
-
-    console.log("🎼 HPCP Final:");
-
-    console.table(
-
-        {
-
-            C: promedio[0],
-
-            "C#": promedio[1],
-
-            D: promedio[2],
-
-            "D#": promedio[3],
-
-            E: promedio[4],
-
-            F: promedio[5],
-
-            "F#": promedio[6],
-
-            G: promedio[7],
-
-            "G#": promedio[8],
-
-            A: promedio[9],
-
-            "A#": promedio[10],
-
-            B: promedio[11]
-
-        }
+        listaHPCP.length
 
     );
 
-    return promedio;
+    return listaHPCP;
 
 }
