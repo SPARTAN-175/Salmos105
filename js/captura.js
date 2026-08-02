@@ -114,13 +114,13 @@ export async function capturarAudio(segundos = 5) {
 
                 );
 
-                resolve({
+               resolve({
 
-                    audio,
+    audio,
 
-                    sampleRate: 44100
+    sampleRate: audioContext.sampleRate
 
-                });
+});
 
             }, segundos * 1000);
 
