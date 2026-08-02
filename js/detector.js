@@ -1,3 +1,6 @@
+import { transponerATono } from "./transponer.js";
+
+
 // =====================================
 // SALMOS 115
 // Detector de tono
@@ -150,17 +153,26 @@ export async function detectarTono(){
 
             }
 
-            const nota =
+           const nota =
 
-                frecuenciaANota(
+    frecuenciaANota(
 
-                    frecuencia
+        frecuencia
 
-                );
+    );
 
-            estado.textContent =
+estado.textContent =
 
-                `Tono detectado: ${nota}`;
+    `Tono detectado: ${nota}`;
+
+// Espera un instante para que el usuario
+// vea el tono detectado
+
+setTimeout(()=>{
+
+    transponerATono(nota);
+
+},300);
 
         },2000);
 
