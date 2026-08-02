@@ -1,6 +1,14 @@
+// =====================================
+// SALMOS 115
+// Detector principal
+// =====================================
+
 import { iniciarEssentia } from "./essentia.js";
 import { capturarAudio } from "./captura.js";
 
+/*=====================================
+    INICIALIZAR
+=====================================*/
 
 export async function inicializarDetector(){
 
@@ -12,13 +20,15 @@ export async function inicializarDetector(){
 
 }
 
+/*=====================================
+    DETECTAR TONO
+=====================================*/
 
-
-export async function detectarTono() {
+export async function detectarTono(){
 
     console.log("🎤 Iniciando captura...");
 
-    try {
+    try{
 
         const resultado =
             await capturarAudio(5);
@@ -31,7 +41,11 @@ export async function detectarTono() {
 
             "Muestras: " +
 
-            resultado.audio.length
+            resultado.audio.length +
+
+            "\n\nSampleRate: " +
+
+            resultado.sampleRate
 
         );
 
@@ -44,11 +58,5 @@ export async function detectarTono() {
         alert("No fue posible acceder al micrófono.");
 
     }
-
-}
-
-export async function inicializarDetector(){
-
-    console.log("🎵 Detector inicializado");
 
 }
