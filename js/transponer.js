@@ -84,3 +84,79 @@ function bajar(){
 btnMas.addEventListener("click",subir);
 
 btnMenos.addEventListener("click",bajar);
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*=====================================
+    TRANSPONER A UN TONO
+=====================================*/
+
+export function transponerATono(notaDestino){
+
+    // Configuración base
+    const base = [
+
+        "Do",
+        "Sol",
+        "Fa",
+        "Mi",
+        "La",
+        "Re"
+
+    ];
+
+    const selects =
+        document.querySelectorAll(".acorde select");
+
+    // Calcular cuántos semitonos hay
+    const pasos =
+
+        NOTAS.indexOf(notaDestino);
+
+    // Actualizar contador
+
+    semitonos = pasos;
+
+    valor.textContent = pasos;
+
+    // Aplicar configuración base
+    selects.forEach((select,i)=>{
+
+        select.value = base[i];
+
+    });
+
+    // Restaurar menores
+
+    document.getElementById("menor4").checked = true;
+    document.getElementById("menor5").checked = true;
+    document.getElementById("menor6").checked = true;
+
+    document.getElementById("menor1").checked = false;
+    document.getElementById("menor2").checked = false;
+    document.getElementById("menor3").checked = false;
+
+    // Restaurar séptimas
+
+    document
+        .querySelectorAll(
+            ".acorde input[id^='septima']"
+        )
+        .forEach(c=>c.checked=false);
+
+    // Transponer
+
+    aplicarCambio(pasos);
+
+}
+
