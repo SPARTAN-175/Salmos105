@@ -7,6 +7,7 @@ import { iniciarEssentia } from "./essentia.js";
 import { capturarAudio } from "./captura.js";
 import { analizarAudio } from "./analizador.js";
 import { DetectorTonalidad } from "./tonalidad.js";
+
 /*=====================================
     INICIALIZAR
 =====================================*/
@@ -31,69 +32,74 @@ export async function detectarTono(){
 
     try{
 
-        const resultado =
-
-            await capturarAudio(5);
-
         // ==========================
-        // ANALIZAR AUDIO
+        // CAPTURAR AUDIO
         // ==========================
 
-        const hpcp =
-
-            await analizarAudio(
-
-                resultado.audio,
-
-                resultado.sampleRate
-
-            );
+        const audioCapturado = await capturarAudio(5);
 
         // ==========================
-        // DETECTOR DE TONALIDAD
+        // OBTENER TODOS LOS HPCP
         // ==========================
 
-        const detector =
+        const listaHPCP = await analizarAudio(
 
-            new DetectorTonalidad();
+            audioCapturado.audio,
 
-        detector.analizar(
-
-            hpcp
+            audioCapturado.sampleRate
 
         );
 
-        const tonalidad =
+        if(!listaHPCP || listaHPCP.length === 0){
 
-            detector.obtenerResultado();
+            alert("No fue posible analizar el audio.");
 
-        console.log(
+            return;
 
-            "🎼 TONALIDAD FINAL"
+        }
+
+        // ==========================
+        // DETECTAR TONALIDAD
+        // ==========================
+
+        const detector = new DetectorTonalidad();
+
+        const resultado = detector.analizar(
+
+            listaHPCP
 
         );
 
-        console.table(
+        console.log("🎼 RESULTADO FINAL");
 
-            tonalidad
+        console.table(resultado);
 
-        );
+        // ==========================
+        // MOSTRAR RESULTADO
+        // ==========================
 
         alert(
 
-            "Tonalidad detectada:\n\n" +
+            "🎼 Tonalidad detectada\n\n" +
 
-            tonalidad.nota +
+            resultado.nota +
 
             " " +
 
-            tonalidad.escala +
+            resultado.escala +
 
-            "\n\nCorrelación: " +
+            "\n\nConfianza: " +
 
-            tonalidad.correlacion.toFixed(4)
+            resultado.confianza.toFixed(1) +
+
+            "%"
 
         );
+
+        // ==================================================
+        // AQUÍ DESPUÉS CONECTAREMOS LA TRANSPOSICIÓN
+        // transponerATono(resultado.nota);
+        // ==================================================
 
     }
 
@@ -101,11 +107,7 @@ export async function detectarTono(){
 
         console.error(error);
 
-        alert(
-
-            "No fue posible acceder al micrófono."
-
-        );
+        alert("No fue posible acceder al micrófono.");
 
     }
 
