@@ -44,8 +44,39 @@ console.log(
 
     console.log("SampleRate:", sampleRate);
 
-    console.log("Muestras:", audio.length);
+console.log("Muestras:", audio.length);
 
-    return true;
+// =====================================
+// PRIMERA PRUEBA CON HPCP
+// =====================================
+
+const frameSize = 4096;
+
+// Tomamos un fragmento del centro de la grabación
+const inicio = Math.floor((audio.length - frameSize) / 2);
+
+const frame = audio.slice(
+
+    inicio,
+
+    inicio + frameSize
+
+);
+
+console.log("🎵 Analizando frame:", frame.length);
+
+const hpcp = extractor.hpcpExtractor(
+
+    frame,
+
+    sampleRate
+
+);
+
+console.log("🎼 HPCP obtenido:");
+
+console.log(hpcp);
+
+return hpcp;
 
 }
