@@ -37,4 +37,3 @@ if (typeof exports === 'object' && typeof module === 'object')
       define([], function() { return EssentiaWASM; });
     else if (typeof exports === 'object')
       exports["EssentiaWASM"] = EssentiaWASM;
-    
