@@ -19,6 +19,29 @@ export async function analizarAudio(audio, sampleRate){
 
     console.log(extractor);
 
+  
+    
+    
+    
+    
+    
+    console.log("Métodos disponibles:");
+
+console.log(
+
+    Object.getOwnPropertyNames(
+
+        Object.getPrototypeOf(extractor)
+
+    )
+
+);
+
+
+
+
+    
+
     console.log("SampleRate:", sampleRate);
 
     console.log("Muestras:", audio.length);
