@@ -1,4 +1,4 @@
-import { inicializarDetector } from "./detector.js";
+import {detectarTono, inicializarDetector} from "./detector.js";
 import { capturarAudio } from "./captura.js";
 
 import { iniciarBuscador } from "./buscar.js";
@@ -61,28 +61,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     // ==========================
 
     document
-        .getElementById("btnDetectarTono")
-        .addEventListener(
-            "click",
-            async () => {
 
-                try {
+.getElementById(
 
-                    const resultado =
-                        await capturarAudio(5);
+    "btnDetectarTono"
 
-                    console.log(resultado);
+)
 
-                }
+.addEventListener(
 
-                catch (error) {
+    "click",
 
-                    console.error(error);
+    detectarTono
 
-                }
-
-            }
-        );
+);
 
 });
 
