@@ -20,7 +20,7 @@ export async function analizarAudio(audio, sampleRate){
     console.log(extractor);
 
   
-    
+    console.log(extractor.hpcpExtractor.toString());
     
     
     
