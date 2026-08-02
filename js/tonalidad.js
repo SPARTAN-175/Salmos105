@@ -249,33 +249,39 @@ export class DetectorTonalidad{
 
     constructor(){
 
-        this.reiniciar();
-
-    }
-
-    // ==========================
-
-    reiniciar(){
-
-        this.historial = [];
-
         this.resultado = null;
 
     }
 
-    // ==========================
+    analizar(hpcp){
 
-    agregarHPCP(hpcp){
+        console.log(
 
-        this.historial.push(
+            "🎼 Analizando tonalidad..."
 
-            hpcp
+        );
+
+        this.resultado =
+
+            buscarMejorCoincidencia(
+
+                hpcp
+
+            );
+
+        console.log(
+
+            "🎯 Resultado:"
+
+        );
+
+        console.table(
+
+            this.resultado
 
         );
 
     }
-
-    // ==========================
 
     obtenerResultado(){
 
