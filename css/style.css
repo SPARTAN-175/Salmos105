@@ -873,3 +873,94 @@ tr:last-child td{
 }
 
 
+
+
+
+
+/*=========================
+    DETECTOR DE TONO
+=========================*/
+
+.panelDetector{
+
+    background:#fff;
+
+    border-radius:14px;
+
+    padding:14px;
+
+    margin-bottom:15px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.btnDetectar{
+
+    border:none;
+
+    background:#10A651;
+
+    color:#fff;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.btnDetectar:active{
+
+    transform:scale(.98);
+
+}
+
+#estadoDetector{
+
+    text-align:center;
+
+    font-size:14px;
+
+    color:#666;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
