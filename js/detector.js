@@ -5,7 +5,7 @@
 
 import { iniciarEssentia } from "./essentia.js";
 import { capturarAudio } from "./captura.js";
-
+import { analizarAudio } from "./analizador.js";
 /*=====================================
     INICIALIZAR
 =====================================*/
@@ -31,9 +31,15 @@ export async function detectarTono(){
     try{
 
         const resultado =
-            await capturarAudio(5);
+    await capturarAudio(5);
 
-        console.log(resultado);
+await analizarAudio(
+
+    resultado.audio,
+
+    resultado.sampleRate
+
+);
 
         alert(
 
