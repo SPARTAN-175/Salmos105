@@ -255,38 +255,26 @@ export class DetectorTonalidad{
 
     analizar(hpcp){
 
-        console.log(
+    return buscarMejorCoincidencia(
 
-            "🎼 Analizando tonalidad..."
+        hpcp
 
-        );
+    );
 
-        this.resultado =
+}
 
-            buscarMejorCoincidencia(
+export class DetectorTonalidad{
 
-                hpcp
+    analizar(hpcp){
 
-            );
+        return buscarMejorCoincidencia(
 
-        console.log(
-
-            "🎯 Resultado:"
-
-        );
-
-        console.table(
-
-            this.resultado
+            hpcp
 
         );
 
     }
 
-    obtenerResultado(){
-
-        return this.resultado;
-
-    }
+}
 
 }
