@@ -1,3 +1,4 @@
+import { inicializarDetector } from "./detector.js";
 import { iniciarBuscador } from "./buscar.js";
 import { crearAcordes } from "./acordes.js";
 import "./transponer.js";
