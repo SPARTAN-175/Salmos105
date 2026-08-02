@@ -11,7 +11,9 @@ import {
 import {eliminarActual} from "./eliminar.js";
 import { detectarTono } from "./detector.js";
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+
+    await inicializarDetector();
 
     crearAcordes();
     actualizarLista();
