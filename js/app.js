@@ -8,6 +8,7 @@ import {
     anteriorConfiguracion
 } from "./cargar.js";
 import {eliminarActual} from "./eliminar.js";
+import { detectarTono } from "./detector.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -49,6 +50,22 @@ document
         "click",
 
         eliminarActual
+
+    );
+
+document
+
+    .getElementById(
+
+        "btnDetectarTono"
+
+    )
+
+    .addEventListener(
+
+        "click",
+
+        detectarTono
 
     );
 
