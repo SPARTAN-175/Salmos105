@@ -6,6 +6,7 @@
 import { iniciarEssentia } from "./essentia.js";
 import { capturarAudio } from "./captura.js";
 import { analizarAudio } from "./analizador.js";
+import { DetectorTonalidad } from "./tonalidad.js";
 /*=====================================
     INICIALIZAR
 =====================================*/
@@ -31,27 +32,66 @@ export async function detectarTono(){
     try{
 
         const resultado =
-    await capturarAudio(5);
 
-await analizarAudio(
+            await capturarAudio(5);
 
-    resultado.audio,
+        // ==========================
+        // ANALIZAR AUDIO
+        // ==========================
 
-    resultado.sampleRate
+        const hpcp =
 
-);
+            await analizarAudio(
+
+                resultado.audio,
+
+                resultado.sampleRate
+
+            );
+
+        // ==========================
+        // DETECTOR DE TONALIDAD
+        // ==========================
+
+        const detector =
+
+            new DetectorTonalidad();
+
+        detector.analizar(
+
+            hpcp
+
+        );
+
+        const tonalidad =
+
+            detector.obtenerResultado();
+
+        console.log(
+
+            "🎼 TONALIDAD FINAL"
+
+        );
+
+        console.table(
+
+            tonalidad
+
+        );
 
         alert(
 
-            "Audio capturado correctamente.\n\n" +
+            "Tonalidad detectada:\n\n" +
 
-            "Muestras: " +
+            tonalidad.nota +
 
-            resultado.audio.length +
+            " " +
 
-            "\n\nSampleRate: " +
+            tonalidad.escala +
 
-            resultado.sampleRate
+            "\n\nCorrelación: " +
+
+            tonalidad.correlacion.toFixed(4)
 
         );
 
@@ -61,7 +101,11 @@ await analizarAudio(
 
         console.error(error);
 
-        alert("No fue posible acceder al micrófono.");
+        alert(
+
+            "No fue posible acceder al micrófono."
+
+        );
 
     }
 
