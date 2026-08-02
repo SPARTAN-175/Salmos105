@@ -1,7 +1,11 @@
 // =====================================
 // SALMOS 115
-// Detector de tonalidad
+// Motor de detección de tonalidad
 // =====================================
+
+/*=====================================
+    NOTAS MUSICALES
+=====================================*/
 
 const NOTAS = [
 
@@ -20,9 +24,9 @@ const NOTAS = [
 
 ];
 
-// =====================================
-// PERFILES KRUMHANSL
-// =====================================
+/*=====================================
+    PERFILES KRUMHANSL
+=====================================*/
 
 const PERFIL_MAYOR = [
 
@@ -58,15 +62,23 @@ const PERFIL_MENOR = [
 
 ];
 
-// =====================================
-// ROTAR PERFIL
-// =====================================
+/*=====================================
+    ROTAR PERFIL
+=====================================*/
 
 function rotarPerfil(perfil, desplazamiento){
 
     const nuevo = [];
 
-    for(let i = 0; i < 12; i++){
+    for(
+
+        let i = 0;
+
+        i < 12;
+
+        i++
+
+    ){
 
         nuevo.push(
 
@@ -80,112 +92,171 @@ function rotarPerfil(perfil, desplazamiento){
 
 }
 
-// =====================================
-// CORRELACIÓN DE PEARSON
-// =====================================
+/*=====================================
+    CORRELACIÓN DE PEARSON
+=====================================*/
 
-function correlacion(vector1, vector2){
+function correlacionPearson(
+
+    vector1,
+
+    vector2
+
+){
 
     let sumaX = 0;
+
     let sumaY = 0;
 
-    for(let i = 0; i < 12; i++){
+    for(
+
+        let i = 0;
+
+        i < 12;
+
+        i++
+
+    ){
 
         sumaX += vector1[i];
+
         sumaY += vector2[i];
 
     }
 
-    const mediaX = sumaX / 12;
-    const mediaY = sumaY / 12;
+    const mediaX =
+
+        sumaX / 12;
+
+    const mediaY =
+
+        sumaY / 12;
 
     let numerador = 0;
+
     let denominadorX = 0;
+
     let denominadorY = 0;
 
-    for(let i = 0; i < 12; i++){
+    for(
 
-        const dx = vector1[i] - mediaX;
-        const dy = vector2[i] - mediaY;
+        let i = 0;
 
-        numerador += dx * dy;
+        i < 12;
 
-        denominadorX += dx * dx;
+        i++
 
-        denominadorY += dy * dy;
+    ){
+
+        const dx =
+
+            vector1[i] - mediaX;
+
+        const dy =
+
+            vector2[i] - mediaY;
+
+        numerador +=
+
+            dx * dy;
+
+        denominadorX +=
+
+            dx * dx;
+
+        denominadorY +=
+
+            dy * dy;
 
     }
 
-    const denominador = Math.sqrt(
+    const denominador =
 
-        denominadorX * denominadorY
+        Math.sqrt(
 
-    );
+            denominadorX *
 
-    if(denominador === 0){
+            denominadorY
+
+        );
+
+    if(
+
+        denominador === 0
+
+    ){
 
         return 0;
 
     }
 
-    return numerador / denominador;
+    return numerador /
+
+        denominador;
 
 }
 
-
-// =====================================
-// BUSCAR MEJOR COINCIDENCIA
-// =====================================
+/*=====================================
+    BUSCAR MEJOR COINCIDENCIA
+=====================================*/
 
 function buscarMejorCoincidencia(hpcp){
 
-    let mejor = {
+    let mejor = null;
 
-        nota: "",
+    // --------------------------
+    // MAYORES
+    // --------------------------
 
-        escala: "",
+    for(
 
-        correlacion: -Infinity
+        let i = 0;
 
-    };
+        i < 12;
 
-    // ==========================
-    // TONALIDADES MAYORES
-    // ==========================
+        i++
 
-    for(let i = 0; i < 12; i++){
+    ){
 
-        const perfil = rotarPerfil(
+        const valor =
 
-            PERFIL_MAYOR,
+            correlacionPearson(
 
-            i
+                hpcp,
 
-        );
+                rotarPerfil(
 
-        const valor = correlacion(
+                    PERFIL_MAYOR,
 
-            hpcp,
+                    i
 
-            perfil
+                )
 
-        );
+            );
 
-        console.log(
+        if(
 
-            `${NOTAS[i]} Mayor -> ${valor.toFixed(4)}`
+            mejor === null ||
 
-        );
+            valor >
 
-        if(valor > mejor.correlacion){
+            mejor.correlacion
+
+        ){
 
             mejor = {
 
-                nota: NOTAS[i],
+                nota:
 
-                escala: "Mayor",
+                    NOTAS[i],
 
-                correlacion: valor
+                escala:
+
+                    "Mayor",
+
+                correlacion:
+
+                    valor
 
             };
 
@@ -193,43 +264,57 @@ function buscarMejorCoincidencia(hpcp){
 
     }
 
-    // ==========================
-    // TONALIDADES MENORES
-    // ==========================
+    // --------------------------
+    // MENORES
+    // --------------------------
 
-    for(let i = 0; i < 12; i++){
+    for(
 
-        const perfil = rotarPerfil(
+        let i = 0;
 
-            PERFIL_MENOR,
+        i < 12;
 
-            i
+        i++
 
-        );
+    ){
 
-        const valor = correlacion(
+        const valor =
 
-            hpcp,
+            correlacionPearson(
 
-            perfil
+                hpcp,
 
-        );
+                rotarPerfil(
 
-        console.log(
+                    PERFIL_MENOR,
 
-            `${NOTAS[i]} menor -> ${valor.toFixed(4)}`
+                    i
 
-        );
+                )
 
-        if(valor > mejor.correlacion){
+            );
+
+        if(
+
+            valor >
+
+            mejor.correlacion
+
+        ){
 
             mejor = {
 
-                nota: NOTAS[i],
+                nota:
 
-                escala: "Menor",
+                    NOTAS[i],
 
-                correlacion: valor
+                escala:
+
+                    "Menor",
+
+                correlacion:
+
+                    valor
 
             };
 
@@ -241,40 +326,162 @@ function buscarMejorCoincidencia(hpcp){
 
 }
 
-// =====================================
-// CLASE PRINCIPAL
-// =====================================
+
+/*=====================================
+    DETECTOR DE TONALIDAD
+=====================================*/
 
 export class DetectorTonalidad{
 
-    constructor(){
+    analizar(listaHPCP){
 
-        this.resultado = null;
+        console.log("🎼 Analizando tonalidad...");
+
+        const votos = {};
+
+        // ==========================
+        // ANALIZAR CADA HPCP
+        // ==========================
+
+        for(const hpcp of listaHPCP){
+
+            const resultado =
+
+                buscarMejorCoincidencia(hpcp);
+
+            // Ignorar resultados muy débiles
+
+            if(resultado.correlacion < 0.45){
+
+                continue;
+
+            }
+
+            const clave =
+
+                resultado.nota +
+
+                "_" +
+
+                resultado.escala;
+
+            if(!votos[clave]){
+
+                votos[clave] = {
+
+                    nota: resultado.nota,
+
+                    escala: resultado.escala,
+
+                    votos: 0,
+
+                    sumaCorrelacion: 0
+
+                };
+
+            }
+
+            votos[clave].votos++;
+
+            votos[clave].sumaCorrelacion +=
+
+                resultado.correlacion;
+
+        }
+
+        // ==========================
+        // SI NO HUBO VOTOS
+        // ==========================
+
+        if(
+
+            Object.keys(votos).length === 0
+
+        ){
+
+            return {
+
+                nota: "-",
+
+                escala: "-",
+
+                correlacion: 0,
+
+                confianza: 0,
+
+                votos: 0
+
+            };
+
+        }
+
+        // ==========================
+        // BUSCAR GANADOR
+        // ==========================
+
+        let ganador = null;
+
+        let mejorPuntaje = -Infinity;
+
+        for(const clave in votos){
+
+            const actual = votos[clave];
+
+            const promedio =
+
+                actual.sumaCorrelacion /
+
+                actual.votos;
+
+            // Puntaje ponderado
+
+            const puntaje =
+
+                promedio *
+
+                actual.votos;
+
+            actual.correlacion = promedio;
+
+            actual.puntaje = puntaje;
+
+            if(
+
+                puntaje >
+
+                mejorPuntaje
+
+            ){
+
+                mejorPuntaje = puntaje;
+
+                ganador = actual;
+
+            }
+
+        }
+
+        // ==========================
+        // CALCULAR CONFIANZA
+        // ==========================
+
+        ganador.confianza =
+
+            ganador.correlacion * 100;
+
+        console.log("🗳️ Votación");
+
+        console.table(votos);
+
+        console.log("🏆 Ganador");
+
+        console.table(ganador);
+
+        return ganador;
 
     }
 
-    analizar(hpcp){
-
-    return buscarMejorCoincidencia(
-
-        hpcp
-
-    );
-
 }
 
-export class DetectorTonalidad{
 
-    analizar(hpcp){
 
-        return buscarMejorCoincidencia(
-
-            hpcp
-
-        );
-
-    }
-
-}
-
-}
