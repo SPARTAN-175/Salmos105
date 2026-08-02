@@ -1,299 +1,237 @@
-/*
-=========================================================
- Salmos 115
- detector.js
+//====================================================
+// detector.js
+// Salmos 115
+// MÓDULO 1
+//====================================================
 
- Módulo 1
- - Inicialización
- - Micrófono
- - AudioContext
- - Ring Buffer
-=========================================================
-*/
+let audioContext = null;
+let mediaStream = null;
+let sourceNode = null;
+let processorNode = null;
 
-class DetectorTonalidad {
+let wasm = null;
+let essentia = null;
+let extractor = null;
 
-    constructor() {
+let iniciado = false;
+let escuchando = false;
 
-        //-------------------------------------------------
-        // Estado
-        //-------------------------------------------------
+//-------------------------------------------
+// Configuración
+//-------------------------------------------
 
-        this.iniciado = false;
-        this.escuchando = false;
+const SAMPLE_RATE = 44100;
 
-        //-------------------------------------------------
-        // Audio
-        //-------------------------------------------------
+const BUFFER_SIZE = 4096;
 
-        this.audioContext = null;
-        this.stream = null;
-        this.source = null;
-        this.processor = null;
+const FRAME_SIZE = 4096;
 
-        //-------------------------------------------------
-        // Essentia
-        //-------------------------------------------------
+const HOP_SIZE = 2048;
 
-        this.wasm = null;
-        this.essentia = null;
-        this.extractor = null;
+//-------------------------------------------
+// Buffer de audio
+//-------------------------------------------
 
-        //-------------------------------------------------
-        // Configuración
-        //-------------------------------------------------
+let audioBuffer = [];
 
-        this.sampleRate = 44100;
+const MAX_BUFFER = SAMPLE_RATE * 20;
 
-        this.bufferSize = 4096;
+//====================================================
+// Inicialización pública
+//====================================================
 
-        this.frameSize = 4096;
+export async function inicializarDetector() {
 
-        this.hopSize = 2048;
+    if (iniciado) return;
 
-        //-------------------------------------------------
-        // Buffer circular
-        //-------------------------------------------------
+    console.log("==================================");
+    console.log("Inicializando detector...");
+    console.log("==================================");
 
-        this.audioBuffer = [];
+    try {
 
-        this.maxSamples = this.sampleRate * 20;
+        //-----------------------------------
+        // Cargar WASM
+        //-----------------------------------
 
-        //-------------------------------------------------
-        // Historial
-        //-------------------------------------------------
+        wasm = await EssentiaWASM();
 
-        this.historial = [];
+        //-----------------------------------
+        // Crear instancia Essentia
+        //-----------------------------------
 
-        this.ultimaTonalidad = null;
+        essentia = new Essentia(wasm);
 
-        this.confianza = 0;
+        //-----------------------------------
+        // Crear extractor
+        //-----------------------------------
 
-    }
+        extractor = new EssentiaExtractor(essentia);
 
-    //-----------------------------------------------------
-    // Inicializar Essentia
-    //-----------------------------------------------------
+        iniciado = true;
 
-    async init(){
+        console.log("✓ Essentia cargado");
 
-        if(this.iniciado){
-            return;
-        }
+        //-----------------------------------
+        // Iniciar micrófono
+        //-----------------------------------
 
-        console.log("Inicializando Essentia...");
-
-        this.wasm = await EssentiaWASM();
-
-        this.essentia = new Essentia(this.wasm);
-
-        this.extractor = new EssentiaExtractor(this.essentia);
-
-        this.iniciado = true;
-
-        console.log("Essentia inicializado");
+        await iniciarMicrofono();
 
     }
+    catch (error) {
 
-    //-----------------------------------------------------
-    // Iniciar micrófono
-    //-----------------------------------------------------
-
-    async start(){
-
-        if(!this.iniciado){
-
-            await this.init();
-
-        }
-
-        if(this.escuchando){
-
-            return;
-
-        }
-
-        console.log("Solicitando micrófono...");
-
-        this.stream =
-            await navigator.mediaDevices.getUserMedia({
-
-                audio:{
-
-                    echoCancellation:false,
-
-                    noiseSuppression:false,
-
-                    autoGainControl:false
-
-                }
-
-            });
-
-        //-------------------------------------------------
-
-        this.audioContext =
-            new AudioContext({
-
-                sampleRate:this.sampleRate
-
-            });
-
-        //-------------------------------------------------
-
-        this.source =
-            this.audioContext.createMediaStreamSource(
-
-                this.stream
-
-            );
-
-        //-------------------------------------------------
-
-        this.processor =
-            this.audioContext.createScriptProcessor(
-
-                this.bufferSize,
-
-                1,
-
-                1
-
-            );
-
-        //-------------------------------------------------
-
-        this.processor.onaudioprocess =
-            (event)=>{
-
-                const canal =
-                    event.inputBuffer.getChannelData(0);
-
-                this.recibirAudio(canal);
-
-            };
-
-        //-------------------------------------------------
-
-        this.source.connect(this.processor);
-
-        this.processor.connect(
-
-            this.audioContext.destination
-
-        );
-
-        this.escuchando = true;
-
-        console.log("Micrófono iniciado");
-
-    }
-
-    //-----------------------------------------------------
-    // Detener
-    //-----------------------------------------------------
-
-    stop(){
-
-        if(!this.escuchando){
-
-            return;
-
-        }
-
-        this.escuchando = false;
-
-        if(this.processor){
-
-            this.processor.disconnect();
-
-            this.processor = null;
-
-        }
-
-        if(this.source){
-
-            this.source.disconnect();
-
-            this.source = null;
-
-        }
-
-        if(this.stream){
-
-            this.stream.getTracks()
-
-                .forEach(track=>track.stop());
-
-            this.stream = null;
-
-        }
-
-        if(this.audioContext){
-
-            this.audioContext.close();
-
-            this.audioContext = null;
-
-        }
-
-        console.log("Detector detenido");
-
-    }
-
-    //-----------------------------------------------------
-    // Recibir audio
-    //-----------------------------------------------------
-
-    recibirAudio(data){
-
-        for(let i=0;i<data.length;i++){
-
-            this.audioBuffer.push(data[i]);
-
-        }
-
-        //-------------------------------------------------
-
-        while(
-
-            this.audioBuffer.length >
-
-            this.maxSamples
-
-        ){
-
-            this.audioBuffer.shift();
-
-        }
-
-        //-------------------------------------------------
-
-        if(
-
-            this.audioBuffer.length >=
-
-            this.frameSize
-
-        ){
-
-            this.procesar();
-
-        }
-
-    }
-
-    //-----------------------------------------------------
-    // Procesamiento
-    //-----------------------------------------------------
-
-    procesar(){
-
-        // Módulo 2
+        console.error(error);
 
     }
 
 }
 
-window.detector =
-    new DetectorTonalidad();
+//====================================================
+// Micrófono
+//====================================================
+
+async function iniciarMicrofono() {
+
+    if (escuchando) return;
+
+    mediaStream =
+        await navigator.mediaDevices.getUserMedia({
+
+            audio: {
+
+                echoCancellation: false,
+
+                noiseSuppression: false,
+
+                autoGainControl: false
+
+            }
+
+        });
+
+    audioContext =
+        new AudioContext({
+
+            sampleRate: SAMPLE_RATE
+
+        });
+
+    sourceNode =
+        audioContext.createMediaStreamSource(
+
+            mediaStream
+
+        );
+
+    processorNode =
+        audioContext.createScriptProcessor(
+
+            BUFFER_SIZE,
+
+            1,
+
+            1
+
+        );
+
+    processorNode.onaudioprocess = procesarEntrada;
+
+    sourceNode.connect(processorNode);
+
+    processorNode.connect(audioContext.destination);
+
+    escuchando = true;
+
+    console.log("✓ Micrófono iniciado");
+
+}
+
+//====================================================
+// Audio
+//====================================================
+
+function procesarEntrada(event) {
+
+    const input =
+        event.inputBuffer.getChannelData(0);
+
+    for (let i = 0; i < input.length; i++) {
+
+        audioBuffer.push(input[i]);
+
+    }
+
+    //---------------------------------------
+
+    while (audioBuffer.length > MAX_BUFFER) {
+
+        audioBuffer.shift();
+
+    }
+
+    //---------------------------------------
+
+    if (audioBuffer.length >= FRAME_SIZE) {
+
+        procesarFrame();
+
+    }
+
+}
+
+//====================================================
+// Próximo módulo
+//====================================================
+
+function procesarFrame() {
+
+    // Aquí irá FFT
+
+}
+
+//====================================================
+// API pública
+//====================================================
+
+export function detenerDetector() {
+
+    escuchando = false;
+
+    if (processorNode) {
+
+        processorNode.disconnect();
+
+        processorNode = null;
+
+    }
+
+    if (sourceNode) {
+
+        sourceNode.disconnect();
+
+        sourceNode = null;
+
+    }
+
+    if (mediaStream) {
+
+        mediaStream
+            .getTracks()
+            .forEach(track => track.stop());
+
+        mediaStream = null;
+
+    }
+
+    if (audioContext) {
+
+        audioContext.close();
+
+        audioContext = null;
+
+    }
+
+    console.log("Detector detenido");
+
+}
