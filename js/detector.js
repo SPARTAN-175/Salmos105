@@ -1,4 +1,18 @@
+import { iniciarEssentia } from "./essentia.js";
 import { capturarAudio } from "./captura.js";
+
+
+export async function inicializarDetector(){
+
+    console.log("🎵 Inicializando detector...");
+
+    await iniciarEssentia();
+
+    console.log("✅ Detector listo");
+
+}
+
+
 
 export async function detectarTono() {
 
