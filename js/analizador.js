@@ -6,6 +6,62 @@
 import { obtenerExtractor } from "./essentia.js";
 
 /*=====================================
+    ENERGÍA RMS
+=====================================*/
+
+function calcularRMS(frame){
+
+    let suma = 0;
+
+    for(let i = 0; i < frame.length; i++){
+
+        suma += frame[i] * frame[i];
+
+    }
+
+    return Math.sqrt(
+
+        suma / frame.length
+
+    );
+
+}
+
+/*=====================================
+    NORMALIZAR VECTOR
+=====================================*/
+
+function normalizar(vector){
+
+    let maximo = 0;
+
+    for(let i = 0; i < vector.length; i++){
+
+        if(vector[i] > maximo){
+
+            maximo = vector[i];
+
+        }
+
+    }
+
+    if(maximo === 0){
+
+        return vector;
+
+    }
+
+    for(let i = 0; i < vector.length; i++){
+
+        vector[i] /= maximo;
+
+    }
+
+    return vector;
+
+}
+
+/*=====================================
     ANALIZAR AUDIO
 =====================================*/
 
@@ -15,136 +71,195 @@ export async function analizarAudio(audio, sampleRate){
 
     const extractor = obtenerExtractor();
 
-    console.log("✅ Extractor obtenido");
+    const frameSize = 4096;
 
-    console.log(extractor);
+    const hopSize = 2048;
 
-  
-    console.log(extractor.hpcpExtractor.toString());
-    
-    
-    
-    
-    console.log("Métodos disponibles:");
+    // ==========================
+    // PRIMERA PASADA
+    // Calcular RMS
+    // ==========================
 
-console.log(
+    const listaFrames = [];
 
-    Object.getOwnPropertyNames(
+    let maxRMS = 0;
 
-        Object.getPrototypeOf(extractor)
+    for(
 
-    )
+        let inicio = 0;
 
-);
+        inicio + frameSize <= audio.length;
 
+        inicio += hopSize
 
+    ){
 
+        const frame = audio.slice(
 
-    
+            inicio,
 
-    console.log("SampleRate:", sampleRate);
-
-console.log("Muestras:", audio.length);
-
-// =====================================
-// ANALIZAR TODA LA CAPTURA
-// =====================================
-
-const frameSize = 4096;
-const hopSize = 2048;
-
-const promedio = new Float32Array(12);
-
-let cantidadFrames = 0;
-
-for (
-
-    let inicio = 0;
-
-    inicio + frameSize <= audio.length;
-
-    inicio += hopSize
-
-){
-
-    const frame = audio.slice(
-
-        inicio,
-
-        inicio + frameSize
-
-    );
-
-    try{
-
-        const hpcp = extractor.hpcpExtractor(
-
-            frame,
-
-            sampleRate
+            inicio + frameSize
 
         );
 
-        for(
+        const rms = calcularRMS(frame);
 
-            let i=0;
+        if(rms > maxRMS){
 
-            i<12;
-
-            i++
-
-        ){
-
-            promedio[i] += hpcp[i];
+            maxRMS = rms;
 
         }
 
-        cantidadFrames++;
+        listaFrames.push({
+
+            frame,
+
+            rms
+
+        });
 
     }
 
-    catch(error){
+    console.log("🎤 RMS máximo:", maxRMS);
+
+    // ==========================
+    // UMBRAL DINÁMICO
+    // ==========================
+
+    const umbral = maxRMS * 0.30;
+
+    console.log("🎯 Umbral:", umbral);
+
+    // ==========================
+    // SEGUNDA PASADA
+    // ==========================
+
+    const promedio = new Float32Array(12);
+
+    let framesUtiles = 0;
+
+    for(const item of listaFrames){
+
+        if(item.rms < umbral){
+
+            continue;
+
+        }
+
+        try{
+
+            const hpcp = extractor.hpcpExtractor(
+
+                item.frame,
+
+                sampleRate
+
+            );
+
+            for(
+
+                let i = 0;
+
+                i < 12;
+
+                i++
+
+            ){
+
+                promedio[i] += hpcp[i];
+
+            }
+
+            framesUtiles++;
+
+        }
+
+        catch(error){
+
+            console.warn(error);
+
+        }
+
+    }
+
+    console.log(
+
+        "🎵 Frames útiles:",
+
+        framesUtiles,
+
+        "de",
+
+        listaFrames.length
+
+    );
+
+    // ==========================
+    // PROMEDIO
+    // ==========================
+
+    if(framesUtiles === 0){
 
         console.warn(
 
-            "Frame ignorado",
-
-            error
+            "No hubo suficiente audio."
 
         );
 
+        return null;
+
     }
 
-}
+    for(
 
-console.log(
+        let i = 0;
 
-    "Frames analizados:",
+        i < 12;
 
-    cantidadFrames
+        i++
 
-);
+    ){
 
-// Promedio
+        promedio[i] /= framesUtiles;
 
-for(
+    }
 
-    let i=0;
+    normalizar(promedio);
 
-    i<12;
+    console.log("🎼 HPCP Final:");
 
-    i++
+    console.table(
 
-){
+        {
 
-    promedio[i] /= cantidadFrames;
+            C: promedio[0],
 
-}
+            "C#": promedio[1],
 
-console.log("🎼 HPCP Promedio:");
+            D: promedio[2],
 
-console.log(promedio);
+            "D#": promedio[3],
 
-return promedio;
+            E: promedio[4],
+
+            F: promedio[5],
+
+            "F#": promedio[6],
+
+            G: promedio[7],
+
+            "G#": promedio[8],
+
+            A: promedio[9],
+
+            "A#": promedio[10],
+
+            B: promedio[11]
+
+        }
+
+    );
+
+    return promedio;
 
 }
