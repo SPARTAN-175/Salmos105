@@ -22,17 +22,43 @@ export function inspeccionarExtractor(){
 
     let proto = extractor;
 
-    while(proto){
+    const nombres = [];
 
-        console.log(
+let proto = extractor;
 
-            Object.getOwnPropertyNames(proto)
+while(proto){
 
-        );
+    nombres.push(
 
-        proto = Object.getPrototypeOf(proto);
+        ...Object.getOwnPropertyNames(proto)
 
-    }
+    );
+
+    proto = Object.getPrototypeOf(proto);
+
+}
+
+const unicos = [...new Set(nombres)];
+
+console.log(
+
+    "Total:",
+
+    unicos.length
+
+);
+
+console.log(
+
+    unicos.filter(
+
+        nombre =>
+
+            nombre.toLowerCase().includes("pitch")
+
+    )
+
+);
 
 }
 /*=====================================
