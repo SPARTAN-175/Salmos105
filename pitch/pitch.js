@@ -1,39 +1,42 @@
 // =====================================
 // SALMOS 115
-// Detector de nota
+// Detector de Nota
 // =====================================
 
 import { frecuenciaANota } from "./frecuencia.js";
 
 /*=====================================
-    PRUEBA
+    DETECTAR NOTA
 =====================================*/
 
-export function probarFrecuencias(){
+export function detectarNotaDesdeFrecuencia(
 
-    const pruebas = [
+    frecuencia
 
-        440,
-        261.63,
-        329.63,
-        392.00
+){
 
-    ];
+    console.log(
 
-    console.log("🎵 Prueba de conversión Hz → Nota");
+        "🎵 Frecuencia recibida:",
 
-    for(const frecuencia of pruebas){
+        frecuencia
 
-        console.table(
+    );
 
-            frecuenciaANota(
+    const resultado =
 
-                frecuencia
+        frecuenciaANota(
 
-            )
+            frecuencia
 
         );
 
-    }
+    console.table(
+
+        resultado
+
+    );
+
+    return resultado;
 
 }
