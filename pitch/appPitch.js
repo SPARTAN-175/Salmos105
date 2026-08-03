@@ -61,7 +61,7 @@ async function detectarNota(){
 
     );
 
-    inspeccionarWASM();
+    inspeccionarExtractor();
 
     const estado =
 
