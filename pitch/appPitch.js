@@ -6,6 +6,7 @@
 /*=====================================
     INICIAR
 =====================================*/
+import { detectarNotaDesdeFrecuencia } from "./pitch.js";
 import { frecuenciaANota } from "./frecuencia.js";
 
 export function iniciarPitch(){
@@ -70,19 +71,13 @@ function detectarNota(){
 
         "🎤 Probando detector...";
 
-    // ==========================
-    // PRUEBA
-    // ==========================
-
     const resultado =
 
-        frecuenciaANota(
+        detectarNotaDesdeFrecuencia(
 
             329.63
 
         );
-
-    console.table(resultado);
 
     estado.textContent =
 
