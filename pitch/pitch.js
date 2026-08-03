@@ -173,16 +173,31 @@ export function detectarFrecuencia(
 
             );
 
-        console.log(
+       const resultado =
 
-            "Frame:",
+    extractor.PitchYin(
 
-            inicio,
+        frame,
 
-            frame.size()
+        frameSize,
 
-        );
+        true,
 
+        1000,
+
+        60,
+
+        sampleRate,
+
+        0.15
+
+    );
+
+console.log(
+
+    resultado
+
+);
     }
 
     return null;
