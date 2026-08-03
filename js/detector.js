@@ -18,8 +18,6 @@ export async function inicializarDetector(){
 
    await iniciarEssentia();
 
-mostrarAlgoritmosPitch();
-
 console.log("✅ Detector listo");
 
 }
