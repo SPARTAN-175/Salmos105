@@ -116,11 +116,7 @@ console.log(pitch);
 
     );
 
-mostrarCirculo(
-
-    acordes
-
-);
+aplicarCirculo(acordes);
 
 }
 
