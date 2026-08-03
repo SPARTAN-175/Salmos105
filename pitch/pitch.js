@@ -143,6 +143,8 @@ export function detectarFrecuencia(
 
     const hopSize = 1024;
 
+    const votos = {};
+
     console.log(
 
         "🎤 Recorriendo audio..."
@@ -213,13 +215,78 @@ const nota =
 
     );
 
-console.log(
+const nombreNota =
 
-    nota
+    nota.nota;
 
-);
+if(
+
+    !votos[nombreNota]
+
+){
+
+    votos[nombreNota] = 0;
+
+}
+
+votos[nombreNota]++;
     }
 
-    return null;
+
+
+    
+
+
+    console.log(
+
+    "🗳️ Votación"
+
+);
+
+console.table(
+
+    votos
+
+);
+
+let notaGanadora = null;
+
+let mayor = 0;
+
+for(
+
+    const nota in votos
+
+){
+
+    if(
+
+        votos[nota] > mayor
+
+    ){
+
+        mayor = votos[nota];
+
+        notaGanadora = nota;
+
+    }
+
+}
+
+console.log(
+
+    "🏆 Nota detectada:",
+
+    notaGanadora
+
+);
+
+return notaGanadora;
+
+
+
+
+
+        return null;
 
 }
