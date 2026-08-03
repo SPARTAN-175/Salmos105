@@ -193,9 +193,29 @@ export function detectarFrecuencia(
 
     );
 
+// Ignorar resultados poco confiables
+
+if(
+
+    resultado.pitchConfidence < 0.90
+
+){
+
+    continue;
+
+}
+
+const nota =
+
+    frecuenciaANota(
+
+        resultado.pitch
+
+    );
+
 console.log(
 
-    resultado
+    nota
 
 );
     }
