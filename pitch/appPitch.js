@@ -10,6 +10,7 @@ import { detectarNotaDesdeFrecuencia } from "./pitch.js";
 import { frecuenciaANota } from "./frecuencia.js";
 import { capturarAudioPitch } from "./capturaPitch.js";
 import { inspeccionarExtractor } from "./pitch.js";
+import { detectarFrecuencia } from "./pitch.js";
 
 export function iniciarPitch(){
 
@@ -86,6 +87,19 @@ async function detectarNota(){
             resultado
 
         );
+        const pitch =
+
+    detectarFrecuencia(
+
+        resultado.audio,
+
+        resultado.sampleRate
+
+    );
+
+console.log(pitch);
+
+        
 
         estado.textContent =
 
