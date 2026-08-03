@@ -139,54 +139,52 @@ export function detectarFrecuencia(
 
         obtenerExtractor();
 
-    // Tomamos un frame de 2048 muestras
+    const frameSize = 2048;
 
-    const frame =
+    const hopSize = 1024;
 
-    extractor.arrayToVector(
+    console.log(
 
-        audio.slice(
-
-            0,
-
-            2048
-
-        )
+        "🎤 Recorriendo audio..."
 
     );
 
-    const resultado =
+    for(
 
-        extractor.PitchYin(
+        let inicio = 0;
 
-            frame,
+        inicio + frameSize <= audio.length;
 
-            2048,
+        inicio += hopSize
 
-            true,
+    ){
 
-            22050,
+        const frame =
 
-            20,
+            extractor.arrayToVector(
 
-            sampleRate,
+                audio.slice(
 
-            0.15
+                    inicio,
+
+                    inicio + frameSize
+
+                )
+
+            );
+
+        console.log(
+
+            "Frame:",
+
+            inicio,
+
+            frame.size()
 
         );
 
-    console.log(
+    }
 
-        "🎵 Resultado PitchYin:"
-
-    );
-
-    console.log(
-
-        resultado
-
-    );
-
-    return resultado;
+    return null;
 
 }
