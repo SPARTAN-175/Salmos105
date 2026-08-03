@@ -31,47 +31,17 @@ export function obtenerCirculo(
 }
 
 
-
-
-
-
-
+import { actualizarImagen } from "../js/ui.js";
 
 /*=====================================
-    MOSTRAR CÍRCULO ARMÓNICO
+    APLICAR CÍRCULO ARMÓNICO
 =====================================*/
 
-export function mostrarCirculo(
+export function aplicarCirculo(
 
     acordes
 
 ){
-
-    const contenedor =
-
-        document.getElementById(
-
-            "contenedorAcordes"
-
-        );
-
-    contenedor.innerHTML = "";
-
-    const grados = [
-
-        "I",
-
-        "V",
-
-        "IV",
-
-        "iii",
-
-        "vi",
-
-        "ii"
-
-    ];
 
     for(
 
@@ -83,37 +53,49 @@ export function mostrarCirculo(
 
     ){
 
-        const tarjeta =
+        const acorde =
 
-            document.createElement(
+            acordes[i];
 
-                "div"
+        const menor =
 
-            );
+            acorde.endsWith("m");
 
-        tarjeta.className =
+        const nota =
 
-            "acorde";
+            menor
 
-        tarjeta.innerHTML =
+            ? acorde.slice(
 
-            `
-                <span class="grado">
+                0,
 
-                    ${grados[i]}
+                -1
 
-                </span>
+            )
 
-                <span class="nombre">
+            : acorde;
 
-                    ${acordes[i]}
+        document.getElementById(
 
-                </span>
-            `;
+            `nota${i+1}`
 
-        contenedor.appendChild(
+        ).value = nota;
 
-            tarjeta
+        document.getElementById(
+
+            `menor${i+1}`
+
+        ).checked = menor;
+
+        document.getElementById(
+
+            `septima${i+1}`
+
+        ).checked = false;
+
+        actualizarImagen(
+
+            i+1
 
         );
 
