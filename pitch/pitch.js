@@ -62,6 +62,26 @@ export function inspeccionarExtractor(){
 
     );
 
+console.log("================================");
+
+console.log("PitchYin:");
+
+console.log(
+
+    extractor.PitchYin
+
+);
+
+console.log("================================");
+
+console.log("PitchYinFFT:");
+
+console.log(
+
+    extractor.PitchYinFFT
+
+);
+
 }
 /*=====================================
     DETECTAR NOTA
