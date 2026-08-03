@@ -9,6 +9,7 @@
 import { detectarNotaDesdeFrecuencia } from "./pitch.js";
 import { frecuenciaANota } from "./frecuencia.js";
 import { capturarAudioPitch } from "./capturaPitch.js";
+import { inspeccionarWASM } from "./pitch.js";
 
 export function iniciarPitch(){
 
@@ -59,6 +60,8 @@ async function detectarNota(){
         "🎤 Botón Detectar Nota presionado."
 
     );
+
+    inspeccionarWASM();
 
     const estado =
 
