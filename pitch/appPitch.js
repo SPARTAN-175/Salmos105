@@ -6,6 +6,7 @@
 /*=====================================
     INICIAR
 =====================================*/
+import { frecuenciaANota } from "./frecuencia.js";
 
 export function iniciarPitch(){
 
@@ -67,6 +68,26 @@ function detectarNota(){
 
     estado.textContent =
 
-        "🎤 Escuchando...";
+        "🎤 Probando detector...";
+
+    // ==========================
+    // PRUEBA
+    // ==========================
+
+    const resultado =
+
+        frecuenciaANota(
+
+            329.63
+
+        );
+
+    console.table(resultado);
+
+    estado.textContent =
+
+        "Nota detectada: " +
+
+        resultado.nota;
 
 }
