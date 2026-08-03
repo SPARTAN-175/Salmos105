@@ -80,7 +80,7 @@ async function detectarNota(){
 
         const resultado =
 
-            await capturarAudioPitch(2);
+            await capturarAudioPitch(4);
 
         console.log(
 
