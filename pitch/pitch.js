@@ -64,7 +64,11 @@ export function inspeccionarExtractor(){
 
 console.log("================================");
 
-console.log("PitchYin:");
+console.log(
+
+    extractor.PitchYin.toString()
+
+);
 
 console.log(
 
@@ -78,7 +82,7 @@ console.log("PitchYinFFT:");
 
 console.log(
 
-    extractor.PitchYinFFT
+    extractor.PitchYinFFT.toString()
 
 );
 
