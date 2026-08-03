@@ -11,7 +11,7 @@ import { frecuenciaANota } from "./frecuencia.js";
 import { capturarAudioPitch } from "./capturaPitch.js";
 import { inspeccionarExtractor } from "./pitch.js";
 import { detectarFrecuencia } from "./pitch.js";
-import { obtenerCirculo, mostrarCirculo } from "./acordes.js";
+import { obtenerCirculo, aplicarCirculo } from "./acordes.js";
 
 export function iniciarPitch(){
 
