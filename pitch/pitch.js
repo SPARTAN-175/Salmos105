@@ -7,7 +7,6 @@ import { frecuenciaANota } from "./frecuencia.js";
 import { obtenerWASM } from "../js/essentia.js";
 
 import { obtenerExtractor } from "../js/essentia.js";
-
 /*=====================================
     INSPECCIONAR EXTRACTOR
 =====================================*/
@@ -114,6 +113,71 @@ export function detectarNotaDesdeFrecuencia(
         );
 
     console.table(
+
+        resultado
+
+    );
+
+    return resultado;
+
+}
+
+
+/*=====================================
+    DETECTAR FRECUENCIA
+=====================================*/
+
+export function detectarFrecuencia(
+
+    audio,
+
+    sampleRate
+
+){
+
+    const extractor =
+
+        obtenerExtractor();
+
+    // Tomamos un frame de 2048 muestras
+
+    const frame =
+
+        audio.slice(
+
+            0,
+
+            2048
+
+        );
+
+    const resultado =
+
+        extractor.PitchYin(
+
+            frame,
+
+            2048,
+
+            true,
+
+            22050,
+
+            20,
+
+            sampleRate,
+
+            0.15
+
+        );
+
+    console.log(
+
+        "🎵 Resultado PitchYin:"
+
+    );
+
+    console.log(
 
         resultado
 
