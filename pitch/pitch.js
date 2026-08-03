@@ -143,13 +143,17 @@ export function detectarFrecuencia(
 
     const frame =
 
+    extractor.arrayToVector(
+
         audio.slice(
 
             0,
 
             2048
 
-        );
+        )
+
+    );
 
     const resultado =
 
