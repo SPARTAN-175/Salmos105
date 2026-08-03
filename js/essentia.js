@@ -80,3 +80,39 @@ export function estaLista(){
     return inicializado;
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*=====================================
+    OBTENER WASM
+=====================================*/
+
+export function obtenerWASM(){
+
+    if(!inicializado){
+
+        throw new Error(
+
+            "Essentia aún no ha sido inicializada."
+
+        );
+
+    }
+
+    return wasm;
+
+}
