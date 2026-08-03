@@ -6,34 +6,35 @@
 import { frecuenciaANota } from "./frecuencia.js";
 import { obtenerWASM } from "../js/essentia.js";
 
+import { obtenerExtractor } from "../js/essentia.js";
+
 /*=====================================
-    INSPECCIONAR WASM
+    INSPECCIONAR EXTRACTOR
 =====================================*/
 
-export function inspeccionarWASM(){
+export function inspeccionarExtractor(){
 
-    const wasm = obtenerWASM();
+    const extractor = obtenerExtractor();
 
-    console.log("🎼 WASM:");
+    console.log("🎼 Extractor:");
 
-    console.log(wasm);
+    console.log(extractor);
 
-    console.log("🎼 Métodos relacionados con Pitch:");
+    let proto = extractor;
 
-    console.log(
+    while(proto){
 
-        Object.keys(wasm)
+        console.log(
 
-            .filter(nombre =>
+            Object.getOwnPropertyNames(proto)
 
-                nombre.toLowerCase().includes("pitch")
+        );
 
-            )
+        proto = Object.getPrototypeOf(proto);
 
-    );
+    }
 
 }
-
 /*=====================================
     DETECTAR NOTA
 =====================================*/
