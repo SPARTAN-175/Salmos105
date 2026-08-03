@@ -11,7 +11,7 @@ import { frecuenciaANota } from "./frecuencia.js";
 import { capturarAudioPitch } from "./capturaPitch.js";
 import { inspeccionarExtractor } from "./pitch.js";
 import { detectarFrecuencia } from "./pitch.js";
-import { obtenerCirculo } from "./acordes.js";
+import { obtenerCirculo, mostrarCirculo } from "./acordes.js";
 
 export function iniciarPitch(){
 
@@ -108,7 +108,7 @@ console.log(pitch);
 
         `🎵 Nota detectada: ${pitch}`;
 
-    const acordes =
+   const acordes =
 
     obtenerCirculo(
 
@@ -116,7 +116,7 @@ console.log(pitch);
 
     );
 
-console.log(
+mostrarCirculo(
 
     acordes
 
