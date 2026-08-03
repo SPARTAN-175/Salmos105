@@ -101,9 +101,21 @@ console.log(pitch);
 
         
 
-        estado.textContent =
+        if(pitch){
 
-            "✅ Audio capturado";
+    estado.textContent =
+
+        `🎵 Nota detectada: ${pitch}`;
+
+}
+
+else{
+
+    estado.textContent =
+
+        "❌ No se pudo detectar la nota";
+
+}
 
     }
 
