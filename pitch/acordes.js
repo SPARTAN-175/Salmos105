@@ -29,3 +29,94 @@ export function obtenerCirculo(
     return CIRCULOS[nota] ?? [];
 
 }
+
+
+
+
+
+
+
+
+/*=====================================
+    MOSTRAR CÍRCULO ARMÓNICO
+=====================================*/
+
+export function mostrarCirculo(
+
+    acordes
+
+){
+
+    const contenedor =
+
+        document.getElementById(
+
+            "contenedorAcordes"
+
+        );
+
+    contenedor.innerHTML = "";
+
+    const grados = [
+
+        "I",
+
+        "V",
+
+        "IV",
+
+        "iii",
+
+        "vi",
+
+        "ii"
+
+    ];
+
+    for(
+
+        let i = 0;
+
+        i < acordes.length;
+
+        i++
+
+    ){
+
+        const tarjeta =
+
+            document.createElement(
+
+                "div"
+
+            );
+
+        tarjeta.className =
+
+            "acorde";
+
+        tarjeta.innerHTML =
+
+            `
+                <span class="grado">
+
+                    ${grados[i]}
+
+                </span>
+
+                <span class="nombre">
+
+                    ${acordes[i]}
+
+                </span>
+            `;
+
+        contenedor.appendChild(
+
+            tarjeta
+
+        );
+
+    }
+
+}
