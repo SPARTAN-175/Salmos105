@@ -3,6 +3,8 @@
 // Círculos armónicos
 // =====================================
 
+import { actualizarTodos } from "../js/ui.js";
+
 const CIRCULOS = {
 
     "C":  ["C","G","F","Em","Am","Dm"],
@@ -20,85 +22,61 @@ const CIRCULOS = {
 
 };
 
-export function obtenerCirculo(
+const MAPA_NOTAS = {
 
-    nota
+    "C": "Do",
+    "C#": "Do#",
 
-){
+    "D": "Re",
+    "D#": "Re#",
+
+    "E": "Mi",
+
+    "F": "Fa",
+    "F#": "Fa#",
+
+    "G": "Sol",
+    "G#": "Sol#",
+
+    "A": "La",
+    "A#": "La#",
+
+    "B": "Si"
+
+};
+
+export function obtenerCirculo(nota){
 
     return CIRCULOS[nota] ?? [];
 
 }
 
-
-import { actualizarImagen } from "../js/ui.js";
-
 /*=====================================
     APLICAR CÍRCULO ARMÓNICO
 =====================================*/
 
-export function aplicarCirculo(
+export function aplicarCirculo(acordes){
 
-    acordes
+    for(let i = 0; i < acordes.length; i++){
 
-){
+        const acorde = acordes[i];
 
-    for(
+        const menor = acorde.endsWith("m");
 
-        let i = 0;
-
-        i < acordes.length;
-
-        i++
-
-    ){
-
-        const acorde =
-
-            acordes[i];
-
-        const menor =
-
-            acorde.endsWith("m");
-
-        const nota =
-
-            menor
-
-            ? acorde.slice(
-
-                0,
-
-                -1
-
-            )
-
+        const notaIngles = menor
+            ? acorde.slice(0, -1)
             : acorde;
 
-        document.getElementById(
+        const nota = MAPA_NOTAS[notaIngles];
 
-            `nota${i+1}`
+        document.getElementById(`nota${i+1}`).value = nota;
 
-        ).value = nota;
+        document.getElementById(`menor${i+1}`).checked = menor;
 
-        document.getElementById(
-
-            `menor${i+1}`
-
-        ).checked = menor;
-
-        document.getElementById(
-
-            `septima${i+1}`
-
-        ).checked = false;
-
-        actualizarImagen(
-
-            i+1
-
-        );
+        document.getElementById(`septima${i+1}`).checked = false;
 
     }
+
+    actualizarTodos();
 
 }
