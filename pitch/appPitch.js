@@ -8,6 +8,7 @@
 =====================================*/
 import { detectarNotaDesdeFrecuencia } from "./pitch.js";
 import { frecuenciaANota } from "./frecuencia.js";
+import { capturarAudioPitch } from "./capturaPitch.js";
 
 export function iniciarPitch(){
 
@@ -51,7 +52,7 @@ export function iniciarPitch(){
     DETECTAR NOTA
 =====================================*/
 
-function detectarNota(){
+async function detectarNota(){
 
     console.log(
 
@@ -69,20 +70,34 @@ function detectarNota(){
 
     estado.textContent =
 
-        "🎤 Probando detector...";
+        "🎤 Escuchando...";
 
-    const resultado =
+    try{
 
-        detectarNotaDesdeFrecuencia(
+        const resultado =
 
-            329.63
+            await capturarAudioPitch(2);
+
+        console.log(
+
+            resultado
 
         );
 
-    estado.textContent =
+        estado.textContent =
 
-        "Nota detectada: " +
+            "✅ Audio capturado";
 
-        resultado.nota;
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        estado.textContent =
+
+            "❌ Error al capturar audio";
+
+    }
 
 }
