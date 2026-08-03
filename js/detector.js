@@ -16,9 +16,11 @@ export async function inicializarDetector(){
 
     console.log("🎵 Inicializando detector...");
 
-    await iniciarEssentia();
+   await iniciarEssentia();
 
-    console.log("✅ Detector listo");
+mostrarAlgoritmosPitch();
+
+console.log("✅ Detector listo");
 
 }
 
