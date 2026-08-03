@@ -20,45 +20,47 @@ export function inspeccionarExtractor(){
 
     console.log(extractor);
 
-    let proto = extractor;
-
     const nombres = [];
 
-let proto = extractor;
+    let proto = extractor;
 
-while(proto){
+    while(proto){
 
-    nombres.push(
+        nombres.push(
 
-        ...Object.getOwnPropertyNames(proto)
+            ...Object.getOwnPropertyNames(proto)
+
+        );
+
+        proto = Object.getPrototypeOf(proto);
+
+    }
+
+    const unicos = [...new Set(nombres)];
+
+    console.log(
+
+        "Total de métodos:",
+
+        unicos.length
 
     );
 
-    proto = Object.getPrototypeOf(proto);
+    console.log(
 
-}
+        unicos.filter(
 
-const unicos = [...new Set(nombres)];
+            nombre =>
 
-console.log(
+                nombre.toLowerCase().includes(
 
-    "Total:",
+                    "pitch"
 
-    unicos.length
+                )
 
-);
+        )
 
-console.log(
-
-    unicos.filter(
-
-        nombre =>
-
-            nombre.toLowerCase().includes("pitch")
-
-    )
-
-);
+    );
 
 }
 /*=====================================
