@@ -12,6 +12,7 @@ import { capturarAudioPitch } from "./capturaPitch.js";
 import { inspeccionarExtractor } from "./pitch.js";
 import { detectarFrecuencia } from "./pitch.js";
 import { obtenerCirculo, aplicarCirculo } from "./acordes.js";
+import { transponerATono } from "../js/transponer.js";
 
 export function iniciarPitch(){
 
@@ -50,6 +51,42 @@ export function iniciarPitch(){
     );
 
 }
+
+const MAPA_NOTAS = {
+
+    "C": "Do",
+    "C#": "Do#",
+
+    "D": "Re",
+    "D#": "Re#",
+
+    "E": "Mi",
+
+    "F": "Fa",
+    "F#": "Fa#",
+
+    "G": "Sol",
+    "G#": "Sol#",
+
+    "A": "La",
+    "A#": "La#",
+
+    "B": "Si"
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*=====================================
     DETECTAR NOTA
@@ -108,15 +145,9 @@ console.log(pitch);
 
         `🎵 Nota detectada: ${pitch}`;
 
-   const acordes =
+  const nota = MAPA_NOTAS[pitch];
 
-    obtenerCirculo(
-
-        pitch
-
-    );
-
-aplicarCirculo(acordes);
+transponerATono(nota);
 
 }
 
