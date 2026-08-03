@@ -6,6 +6,7 @@ import { crearAcordes } from "./acordes.js";
 import "./transponer.js";
 import { guardarConfiguracion } from "./guardar.js";
 import { actualizarLista } from "./lista.js";
+import { iniciarPitch } from "../pitch/appPitch.js";
 
 import {
     siguienteConfiguracion,
@@ -23,6 +24,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     crearAcordes();
     actualizarLista();
     iniciarBuscador();
+    // Inicializar detector de nota
+iniciarPitch();
 
     // Guardar configuración
     document
