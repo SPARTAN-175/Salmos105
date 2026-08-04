@@ -22,31 +22,65 @@
          ENCABEZADO
     ======================== -->
 
-    <header class="header">
+    <!-- =======================
+     ENCABEZADO
+======================= -->
 
-        <div class="titulo">
+<header class="header">
 
-            <img src="assets/icon-192.png" class="logo" alt="Logo">
+    <div class="headerInfo">
 
-            <div>
+        <img
+            src="assets/icon-192.png"
+            class="logo"
+            alt="Logo">
 
-                <h1>Salmos 115</h1>
+        <div>
 
-                <p>Con tecnología de <strong>MOTI</strong></p>
+            <h1>
 
-            </div>
+                Salmos 115
+
+            </h1>
+
+            <p>
+
+                Con tecnología de <strong>MOTI</strong>
+
+            </p>
 
         </div>
 
-        <button id="btnGuardar" class="btnGuardar">
+    </div>
 
-            💾 Guardar
+    <div class="headerAcciones">
+
+        <button
+            id="btnGuardar"
+            class="btnGuardar"
+            title="Guardar">
+
+            💾
 
         </button>
 
-    </header>
+        <button
+            class="btnMenu"
+            title="Menú">
+
+            ⋮
+
+        </button>
+
+    </div>
+
+</header>
 
     <!-- ==========================
+     ALABANZA ACTUAL
+========================== -->
+
+<!-- ==========================
      ALABANZA ACTUAL
 ========================== -->
 
@@ -58,35 +92,54 @@
 
     </h2>
 
-    <div id="selectorVersion" class="selectorVersion oculto">
+    <div
+        id="selectorVersion"
+        class="selectorVersion oculto">
 
-        <button id="btnAnteriorVersion">
+        <button
+            id="btnAnteriorVersion">
 
             ◀
 
         </button>
 
-        <span id="tonoActual">
+        <div class="tonoCaja">
 
-            Do
+            <span class="textoTono">
 
-        </span>
+                TONO
 
-        <button id="btnSiguienteVersion">
+            </span>
+
+            <span id="tonoActual">
+
+                Do
+
+            </span>
+
+        </div>
+
+        <button
+            id="btnSiguienteVersion">
 
             ▶
 
         </button>
 
     </div>
-    <button id="btnEliminarConfiguracion" class="btnEliminar oculto">
 
-    🗑 Eliminar configuración
+    <!-- Lo dejamos oculto.
+         Más adelante irá al menú -->
+
+    <button
+        id="btnEliminarConfiguracion"
+        class="btnEliminar oculto">
+
+        🗑 Eliminar configuración
 
     </button>
 
 </section>
-
     <!-- =======================
           CONTENIDO
     ======================== -->
@@ -103,40 +156,53 @@
     DETECTOR DE NOTA
 ======================================-->
 
-<div class="panelDetector">
+<!--=====================================
+        HERRAMIENTAS
+======================================-->
 
-    <button id="btnDetectarNota" class="btnDetectar">
+<section class="barraHerramientas">
 
-        🎤 Detectar nota
+    <button
+        id="btnDetectarNota"
+        class="btnAccion">
 
-    </button>
-
-    <p id="estadoPitch">
-
-        Nota detectada: —
-
-    </p>
-
-</div>            
-<!-- ==========================
-     DETECTOR DE TONO
-========================== -->
-
-<div class="panelDetector">
-
-    <button id="btnDetectarTono" class="btnDetectar">
-
-        🎤 Detectar tono
+        🎤
+        <span>Nota</span>
 
     </button>
 
-    <p id="estadoDetector">
+    <button
+        id="btnDetectarTono"
+        class="btnAccion">
 
-        Tono detectado: —
+        🎼
+        <span>Tono</span>
 
-    </p>
+    </button>
 
-</div>
+    <div class="resultadoDetector">
+
+        <small>
+
+            Detectado
+
+        </small>
+
+        <span id="estadoPitch">
+
+            —
+
+        </span>
+
+    </div>
+
+</section>
+
+<p id="estadoDetector" class="estadoSecundario">
+
+    Tono: —
+
+</p>
 
 <!-- ==========================
     -------------------------
