@@ -25,33 +25,43 @@ body{
 
 .header{
 
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:10px 14px;
-
-    background:#fff;
-
-    border-bottom:1px solid #ddd;
-
     position:sticky;
 
     top:0;
 
     z-index:100;
 
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 22px;
+
+    background:linear-gradient(
+
+        135deg,
+
+        #10A651,
+
+        #0C8A43
+
+    );
+
+    color:white;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
+
 }
 
-.titulo{
+.headerInfo{
 
     display:flex;
 
     align-items:center;
 
-    gap:10px;
+    gap:14px;
 
 }
 
@@ -62,38 +72,89 @@ body{
     height:42px;
 
 }
+.logo{
 
-.titulo h1{
+    width:52px;
+
+    height:52px;
+
+    border-radius:14px;
+
+    background:white;
+
+    padding:6px;
+
+}
+.headerInfo h1{
 
     font-size:30px;
 
-    color:#10A651;
+    font-weight:700;
+
+    color:white;
+
+    margin:0;
 
 }
 
-.titulo p{
+.headerInfo p{
 
-    font-size:12px;
+    margin-top:3px;
 
-    color:#666;
+    color:rgba(255,255,255,.82);
+
+    font-size:13px;
+
+}
+.headerAcciones{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
 
 }
 
-.btnGuardar{
+.btnGuardar,
+
+.btnMenu{
+
+    width:48px;
+
+    height:48px;
 
     border:none;
 
-    background:#10A651;
+    border-radius:14px;
 
-    color:#fff;
+    background:rgba(255,255,255,.18);
 
-    padding:10px 14px;
+    color:white;
 
-    border-radius:10px;
-
-    font-size:14px;
+    font-size:20px;
 
     cursor:pointer;
+
+    backdrop-filter:blur(8px);
+
+    transition:.18s;
+
+}
+
+.btnGuardar:hover,
+
+.btnMenu:hover{
+
+    background:rgba(255,255,255,.28);
+
+}
+
+.btnGuardar:active,
+
+.btnMenu:active{
+
+    transform:scale(.94);
 
 }
 
@@ -877,69 +938,115 @@ tr:last-child td{
 
 
 
-/*=========================
-    DETECTOR DE TONO
-=========================*/
+/*==================================
+        BARRA DE HERRAMIENTAS
+===================================*/
 
-.panelDetector{
-
-    background:#fff;
-
-    border-radius:14px;
-
-    padding:14px;
-
-    margin-bottom:15px;
+.barraHerramientas{
 
     display:flex;
 
-    flex-direction:column;
+    align-items:center;
 
-    gap:10px;
+    gap:12px;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:12px 14px;
+
+    margin-bottom:8px;
+
+    box-shadow:0 4px 14px rgba(0,0,0,.06);
 
 }
 
-.btnDetectar{
+.btnAccion{
 
     border:none;
 
     background:#10A651;
 
-    color:#fff;
+    color:white;
 
-    font-size:16px;
+    border-radius:14px;
 
-    font-weight:bold;
+    padding:10px 14px;
 
-    padding:14px;
+    display:flex;
 
-    border-radius:12px;
+    align-items:center;
+
+    gap:8px;
 
     cursor:pointer;
 
-    transition:.2s;
+    font-weight:600;
+
+    transition:.18s;
 
 }
 
-.btnDetectar:active{
-
-    transform:scale(.98);
-
-}
-
-#estadoDetector{
-
-    text-align:center;
+.btnAccion span{
 
     font-size:14px;
 
-    color:#666;
+}
+
+.btnAccion:active{
+
+    transform:scale(.96);
 
 }
 
+.resultadoDetector{
 
+    margin-left:auto;
 
+    display:flex;
 
+    flex-direction:column;
+
+    align-items:flex-end;
+
+}
+
+.resultadoDetector small{
+
+    color:#888;
+
+    font-size:11px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+}
+
+#estadoPitch{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    color:#10A651;
+
+    line-height:1.1;
+
+}
+
+.estadoSecundario{
+
+    text-align:right;
+
+    color:#666;
+
+    font-size:13px;
+
+    margin-bottom:12px;
+
+}
 
 
 
