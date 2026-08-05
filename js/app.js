@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 iniciarMenu();
 
-...
+    
     await inicializarDetector();
 
     // Inicializar la aplicación
