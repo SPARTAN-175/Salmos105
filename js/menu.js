@@ -4,7 +4,7 @@
 // =====================================
 
 import { obtenerVersion } from "./version.js";
-import { enviarMensajeSW } from "./serviceWorker.js";
+
 import { buscarActualizacion } from "./actualizador.js";
 
 export function iniciarMenu(){
