@@ -4,6 +4,7 @@
 // =====================================
 
 import { obtenerVersion } from "./version.js";
+import { enviarMensajeSW } from "./serviceWorker.js";
 
 export function iniciarMenu(){
 
@@ -25,6 +26,19 @@ export function iniciarMenu(){
         version.textContent = `Versión ${datos.version}`;
 
     }
+    const btnBuscarActualizacion =
+    document.getElementById(
+        "btnBuscarActualizacion"
+    );
+    btnBuscarActualizacion.addEventListener("click",()=>{
+
+    enviarMensajeSW({
+
+        accion:"buscarActualizacion"
+
+    });
+
+});
 
     // Abrir / cerrar con el botón
     boton.addEventListener("click",(e)=>{
