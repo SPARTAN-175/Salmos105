@@ -1049,7 +1049,113 @@ tr:last-child td{
 }
 
 
+/*==================================
+            MENÚ
+===================================*/
 
+.menuFondo{
+
+    position:fixed;
+
+    top:75px;
+
+    right:18px;
+
+    z-index:999999;
+
+}
+
+.menuApp{
+
+    width:260px;
+
+    background:white;
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.20);
+
+    animation:menuEntrada .15s ease;
+
+}
+
+.menuTitulo{
+
+    padding:18px;
+
+}
+
+.menuTitulo h3{
+
+    color:#10A651;
+
+    margin-bottom:4px;
+
+}
+
+.menuTitulo p{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+.menuApp hr{
+
+    border:none;
+
+    border-top:1px solid #eee;
+
+}
+
+.menuApp button{
+
+    width:100%;
+
+    border:none;
+
+    background:white;
+
+    text-align:left;
+
+    padding:15px 18px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    transition:.15s;
+
+}
+
+.menuApp button:hover{
+
+    background:#F4F7FA;
+
+}
+
+@keyframes menuEntrada{
+
+    from{
+
+        transform:translateY(-10px);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:translateY(0);
+
+        opacity:1;
+
+    }
+
+}
 
 
 
