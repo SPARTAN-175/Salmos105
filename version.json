@@ -1,7 +1,7 @@
 {
     "app": "Salmos 115",
-    "version": "1.0.0",
-    "build": 1,
-    "fecha": "2026-08-03",
-    "nombre": "Detector de nota estable"
+    "version":"1.0.1",
+    "build":2,
+    "fecha":"2026-08-05",
+    "nombre":"Prueba de actualización"
 }
