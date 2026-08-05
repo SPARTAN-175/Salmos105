@@ -13,27 +13,58 @@ const ARCHIVOS = [
     "./",
     "./index.html",
     "./manifest.json",
+    "./version.json",
 
-    // CSS
+    // Estilos
 
     "./css/style.css",
 
+    // Datos
+
+    "./data/acordes.json",
+
     // JavaScript
 
-    "./js/app.js",
     "./js/acordes.js",
+    "./js/actualizador.js",
+    "./js/analizador.js",
+    "./js/app.js",
     "./js/biblioteca.js",
     "./js/buscar.js",
+    "./js/captura.js",
     "./js/cargar.js",
     "./js/constantes.js",
+    "./js/detector.js",
     "./js/eliminar.js",
+    "./js/essentia.js",
     "./js/guardar.js",
     "./js/lista.js",
+    "./js/menu.js",
     "./js/modal.js",
+    "./js/serviceWorker.js",
     "./js/storage.js",
     "./js/toast.js",
+    "./js/tonalidad.js",
     "./js/transponer.js",
     "./js/ui.js",
+    "./js/version.js",
+
+    // Pitch
+
+    "./pitch/acordes.js",
+    "./pitch/appPitch.js",
+    "./pitch/capturaPitch.js",
+    "./pitch/estabilidad.js",
+    "./pitch/frecuencia.js",
+    "./pitch/notas.js",
+    "./pitch/pitch.js",
+
+    // Librerías que realmente usas
+
+    "./libs/essentia-wasm.web.js",
+    "./libs/essentia-wasm.web.wasm",
+    "./libs/essentia.js-core.umd.js",
+    "./libs/essentia.js-extractor.umd.js",
 
     // Iconos
 
@@ -102,29 +133,49 @@ self.addEventListener("activate", event => {
 
 self.addEventListener("fetch", event => {
 
+    if(event.request.method !== "GET"){
+
+        return;
+
+    }
+
     event.respondWith(
 
         caches.match(event.request)
 
-            .then(response => {
+            .then(cache => {
 
-                if (response) {
+                if(cache){
 
-                    return response;
+                    return cache;
 
                 }
 
                 return fetch(event.request)
 
-                    .then(networkResponse => {
+                    .then(network => {
 
-    return networkResponse;
+                        const copia = network.clone();
 
-})
+                        caches.open(CACHE_NAME)
+
+                            .then(cache => {
+
+                                cache.put(event.request,copia);
+
+                            });
+
+                        return network;
+
+                    })
 
                     .catch(() => {
 
-                        return response;
+                        if(event.request.destination==="document"){
+
+                            return caches.match("./index.html");
+
+                        }
 
                     });
 
@@ -133,7 +184,6 @@ self.addEventListener("fetch", event => {
     );
 
 });
-
 
 // ================================
 // MENSAJES DESDE LA APLICACIÓN
