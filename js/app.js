@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Inicializar el motor musical
     await cargarVersion();
-    await cargarVersion();
 
 iniciarMenu();
 
