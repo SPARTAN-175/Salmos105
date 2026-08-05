@@ -118,39 +118,9 @@ self.addEventListener("fetch", event => {
 
                     .then(networkResponse => {
 
-                        // Guarda automáticamente imágenes,
-                        // CSS y JS nuevos.
+    return networkResponse;
 
-                        if (
-
-                            event.request.method === "GET" &&
-
-                            (
-                                event.request.url.endsWith(".png") ||
-                                event.request.url.endsWith(".jpg") ||
-                                event.request.url.endsWith(".jpeg") ||
-                                event.request.url.endsWith(".svg") ||
-                                event.request.url.endsWith(".css") ||
-                                event.request.url.endsWith(".js")
-                            )
-
-                        ) {
-
-                            const copia = networkResponse.clone();
-
-                            caches.open(CACHE_NAME)
-
-                                .then(cache => {
-
-                                    cache.put(event.request, copia);
-
-                                });
-
-                        }
-
-                        return networkResponse;
-
-                    })
+})
 
                     .catch(() => {
 
