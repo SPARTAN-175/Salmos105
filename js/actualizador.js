@@ -3,59 +3,67 @@
 // Actualizador
 // =====================================
 
-import { obtenerVersion } from "./version.js";
-
-/*=====================================
-    BUSCAR ACTUALIZACIÓN
-=====================================*/
+import { mostrarToast } from "./toast.js";
 
 export async function buscarActualizacion(){
 
-    try{
+    if(!("serviceWorker" in navigator)){
 
-        // Versión instalada
+        mostrarToast(
 
-        const local = obtenerVersion();
+            "Este navegador no soporta PWA.",
 
-        // Versión publicada (ignora caché)
-
-        const respuesta = await fetch(
-
-            `version.json?t=${Date.now()}`,
-
-            {
-
-                cache: "no-store"
-
-            }
+            "error"
 
         );
 
-        const servidor = await respuesta.json();
+        return;
 
-        console.log("📦 Local:", local);
+    }
 
-        console.log("🌎 Servidor:", servidor);
+    try{
 
-        if(
+        mostrarToast(
 
-            local.version === servidor.version &&
+            "🔄 Buscando actualización...",
 
-            local.build === servidor.build
+            "advertencia"
 
-        ){
+        );
 
-            alert("✅ Ya tienes la última versión.");
+        const registro =
+
+            await navigator.serviceWorker.getRegistration();
+
+        if(!registro){
+
+            mostrarToast(
+
+                "No hay Service Worker instalado.",
+
+                "error"
+
+            );
 
             return;
 
         }
 
-        alert(
+        // Fuerza al navegador a revisar si existe una nueva versión
 
-            `Nueva versión disponible\n\n` +
+        await registro.update();
 
-            `${servidor.version}`
+        console.log(
+
+            "🔄 Revisión de actualización solicitada."
+
+        );
+
+        mostrarToast(
+
+            "✔ Revisión completada.",
+
+            "exito"
 
         );
 
@@ -65,9 +73,11 @@ export async function buscarActualizacion(){
 
         console.error(error);
 
-        alert(
+        mostrarToast(
 
-            "No fue posible buscar actualizaciones."
+            "No fue posible buscar actualizaciones.",
+
+            "error"
 
         );
 
