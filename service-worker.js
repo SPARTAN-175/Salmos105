@@ -133,3 +133,14 @@ self.addEventListener("fetch", event => {
     );
 
 });
+
+
+// ================================
+// MENSAJES DESDE LA APLICACIÓN
+// ================================
+
+self.addEventListener("message", event => {
+
+    console.log("📨 Mensaje recibido:", event.data);
+
+});
