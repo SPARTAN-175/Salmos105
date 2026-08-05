@@ -1,7 +1,7 @@
 import { cargarVersion } from "./version.js";
 import {detectarTono, inicializarDetector} from "./detector.js";
 import { capturarAudio } from "./captura.js";
-
+import { iniciarMenu } from "./menu.js";
 import { iniciarBuscador } from "./buscar.js";
 import { crearAcordes } from "./acordes.js";
 import "./transponer.js";
@@ -20,6 +20,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Inicializar el motor musical
     await cargarVersion();
+    await cargarVersion();
+
+iniciarMenu();
+
+...
     await inicializarDetector();
 
     // Inicializar la aplicación
