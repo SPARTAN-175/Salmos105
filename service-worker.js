@@ -3,7 +3,7 @@
 // Service Worker
 // ================================
 
-const CACHE_NAME = "salmos115-v4.0.1";
+const CACHE_NAME = "salmos115-v4.0.2";
 
 // Archivos disponibles sin internet
 const ARCHIVOS = [
