@@ -147,55 +147,48 @@
 
     <main>
 
-        <!-- ACORDES -->
+       <main>
 
-        <section class="panel">
+    <!--=====================================
+            AFINADOR
+    ======================================-->
 
+    <section class="barraHerramientas">
 
-            
-<!--=====================================
-    DETECTOR DE NOTA
+        <button
+            id="btnDetectarNota"
+            class="btnAccion">
+
+            🎤
+            <span>Afinador</span>
+
+        </button>
+
+        <div class="resultadoDetector">
+
+            <small>
+
+                Nota
+
+            </small>
+
+            <span id="estadoPitch">
+
+                —
+
+            </span>
+
+        </div>
+
+    </section>
+
+    <!--=====================================
+        ACORDES
 ======================================-->
 
-<!--=====================================
-        HERRAMIENTAS
-======================================-->
+<section class="panel">
 
-<section class="barraHerramientas">
-
-    <button
-        id="btnDetectarNota"
-        class="btnAccion">
-
-        🎤
-        <span>Nota</span>
-
-    </button>
-
-    <button
-        id="btnDetectarTono"
-        class="btnAccion">
-
-        🎼
-        <span>Tono</span>
-
-    </button>
-
-    <div class="resultadoDetector">
-
-        <small>
-
-            Detectado
-
-        </small>
-
-        <span id="estadoPitch">
-
-            —
-
-        </span>
-
-    </div>
+    <div id="contenedorAcordes"></div>
 
 </section>
 
@@ -204,6 +197,62 @@
     Tono: —
 
 </p>
+
+<!-- ==========================
+     ALABANZA ACTUAL
+========================== -->
+
+<section class="alabanzaActual">
+
+    <h2 id="nombreAlabanza">
+
+        Sin alabanza
+
+    </h2>
+
+    <div
+        id="selectorVersion"
+        class="selectorVersion oculto">
+
+        <button id="btnAnteriorVersion">
+
+            ◀
+
+        </button>
+
+        <div class="tonoCaja">
+
+            <span class="textoTono">
+
+                Configuración
+
+            </span>
+
+            <span id="tonoActual">
+
+                1 / 1
+
+            </span>
+
+        </div>
+
+        <button id="btnSiguienteVersion">
+
+            ▶
+
+        </button>
+
+    </div>
+
+    <button
+        id="btnEliminarConfiguracion"
+        class="btnEliminar oculto">
+
+        🗑
+
+    </button>
+
+</section>
 
 <!-- ==========================
     -------------------------
