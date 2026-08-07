@@ -152,6 +152,8 @@
 ========================== -->
 
 <main>
+    <main>
+
     <!--=====================================
             AFINADOR
     ======================================-->
@@ -171,7 +173,7 @@
 
             <small>
 
-                Nota
+                Nota detectada
 
             </small>
 
@@ -186,133 +188,73 @@
     </section>
 
     <!--=====================================
-        ACORDES
-======================================-->
+            ACORDES
+    ======================================-->
 
-<section class="panel">
+    <section class="panel">
 
-    <div id="contenedorAcordes"></div>
+        <div id="contenedorAcordes"></div>
 
-</section>
+    </section>
 
-<p id="estadoDetector" class="estadoSecundario">
+    <!--=====================================
+            SEMITONOS
+    ======================================-->
 
-    Tono: —
+    <section class="panelSemitonos">
 
-</p>
+        <button
+            id="btnMenos"
+            class="btnSemi">
 
-<!-- ==========================
-     ALABANZA ACTUAL
-========================== -->
-
-<section class="alabanzaActual">
-
-    <h2 id="nombreAlabanza">
-
-        Sin alabanza
-
-    </h2>
-
-    <div
-        id="selectorVersion"
-        class="selectorVersion oculto">
-
-        <button id="btnAnteriorVersion">
-
-            ◀
+            −
 
         </button>
 
-        <div class="tonoCaja">
+        <span id="valorSemitono">
 
-            <span class="textoTono">
+            0
 
-                Configuración
+        </span>
 
-            </span>
+        <button
+            id="btnMas"
+            class="btnSemi">
 
-            <span id="tonoActual">
+            +
 
-                1 / 1
+        </button>
 
-            </span>
+    </section>
+
+    <hr class="separador">
+
+    <!--=====================================
+            BUSCADOR
+    ======================================-->
+
+    <section>
+
+        <input
+            type="text"
+            id="buscarConfiguracion"
+            placeholder="Buscar configuración...">
+
+    </section>
+
+    <!--=====================================
+            BIBLIOTECA
+    ======================================-->
+
+    <section class="lista">
+
+        <div id="listaConfiguraciones">
 
         </div>
 
-        <button id="btnSiguienteVersion">
+    </section>
 
-            ▶
-
-        </button>
-
-    </div>
-
-    <button
-        id="btnEliminarConfiguracion"
-        class="btnEliminar oculto">
-
-        🗑
-
-    </button>
-
-</section>
-
-<!-- ==========================
-    -------------------------
-========================== -->
-
-            <div id="contenedorAcordes"></div>
-
-        </section>
-
-        <!-- SEMITONOS -->
-
-        <section class="panelSemitonos">
-
-            <button id="btnMenos" class="btnSemi">
-
-                −
-
-            </button>
-
-            <span id="valorSemitono">
-
-                0
-
-            </span>
-
-            <button id="btnMas" class="btnSemi">
-
-                +
-
-            </button>
-
-        </section>
-
-        <hr class="separador">
-
-        <!-- BUSCAR -->
-
-        <section>
-
-            <input
-                type="text"
-                id="buscarConfiguracion"
-                placeholder="Buscar configuración...">
-
-        </section>
-
-        <!-- LISTA -->
-
-        <section class="lista">
-
-    <div id="listaConfiguraciones">
-
-    </div>
-
-        </section>
-
-    </main>
+</main>
 
 <!-- Essentia -->
 
