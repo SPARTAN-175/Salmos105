@@ -1207,7 +1207,95 @@ tr:last-child td{
 
 
 
+/*==================================
+        NUESTRA MISIÓN
+===================================*/
 
+.modalAcerca{
+
+    max-width:520px;
+
+    max-height:85vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.contenidoAcerca{
+
+    overflow-y:auto;
+
+    padding-right:8px;
+
+    margin:18px 0;
+
+    line-height:1.7;
+
+}
+
+.contenidoAcerca h3{
+
+    color:#10A651;
+
+    margin:18px 0 8px;
+
+    font-size:18px;
+
+}
+
+.contenidoAcerca p{
+
+    color:#444;
+
+    font-size:15px;
+
+    text-align:justify;
+
+}
+
+.contenidoAcerca ul{
+
+    padding-left:20px;
+
+    margin-top:10px;
+
+}
+
+.contenidoAcerca li{
+
+    margin-bottom:10px;
+
+    color:#444;
+
+}
+
+.versiculo{
+
+    text-align:center !important;
+
+    color:#10A651 !important;
+
+    font-size:16px !important;
+
+}
+
+.modalAcerca hr{
+
+    border:none;
+
+    border-top:1px solid #E6E6E6;
+
+    margin:20px 0;
+
+}
+
+#btnCerrarAcerca{
+
+    width:100%;
+
+}
 
 
 
