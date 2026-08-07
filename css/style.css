@@ -186,57 +186,52 @@ main{
 
     width: 100%;
     max-width: 100%;
-
     box-sizing: border-box;
 
     display: flex;
-
     flex-wrap: nowrap;
 
-    gap: 10px;
+    justify-content: space-between;
+    align-items: flex-start;
 
-    overflow-x: auto;
-    overflow-y: hidden;
+    gap: 3px;
 
-    padding: 4px 2px 10px;
+    overflow: hidden;
 
-    scrollbar-width: thin;
+    padding: 4px 0;
 
 }
 
 .acorde {
 
-    flex: 0 0 auto;
+    flex: 1 1 0;
+    min-width: 0;
 
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
 
-    gap: 5px;
+    gap: 4px;
 
 }
 
-.acorde select{
+.acorde select {
 
-    width:54px;
-
+    width: 50px;
     max-width: 100%;
 
-    font-size:13px;
+    font-size: 13px;
+    font-weight: bold;
 
-    font-weight:bold;
+    text-align: center;
 
-    text-align:center;
+    border: none;
+    border-bottom: 2px solid #10A651;
 
-    border:none;
+    background: transparent;
+    outline: none;
 
-    border-bottom:2px solid #10A651;
-
-    background:transparent;
-
-    outline:none;
+    box-sizing: border-box;
 
 }
 
@@ -247,12 +242,11 @@ main{
     flex-direction: column;
 
     justify-content: center;
-
     align-items: center;
 
     gap: 2px;
 
-    margin-top: 4px;
+    margin-top: 3px;
 
     font-size: 12px;
 
@@ -283,7 +277,6 @@ main{
 .imagenAcorde img {
 
     width: 55px;
-
     max-width: 100%;
 
     height: auto;
