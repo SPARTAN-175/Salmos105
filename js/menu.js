@@ -62,4 +62,17 @@ export function iniciarMenu(){
 
     });
 
+    document.getElementById("btnAnalizarCancion")
+    .addEventListener("click", () => {
+
+        mostrarToast(
+
+            "Próximamente disponible",
+
+            "advertencia"
+
+        );
+
+    });
+
 }
