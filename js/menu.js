@@ -31,11 +31,95 @@ export function iniciarMenu(){
     document.getElementById(
         "btnBuscarActualizacion"
     );
+
+    // ==========================
+// NUESTRA MISIÓN
+// ==========================
+
+const btnAcerca =
+document.getElementById(
+    "btnAcerca"
+);
+
+const modalAcerca =
+document.getElementById(
+    "modalAcerca"
+);
+
+const btnCerrarAcerca =
+document.getElementById(
+    "btnCerrarAcerca"
+);
+    
     btnBuscarActualizacion.addEventListener(
 
     "click",
 
     buscarActualizacion
+
+);
+
+    // Abrir "Nuestra misión"
+
+btnAcerca.addEventListener(
+
+    "click",
+
+    ()=>{
+
+        fondo.classList.add("oculto");
+
+        modalAcerca.classList.remove(
+
+            "oculto"
+
+        );
+
+    }
+
+);
+
+// Cerrar
+
+btnCerrarAcerca.addEventListener(
+
+    "click",
+
+    ()=>{
+
+        modalAcerca.classList.add(
+
+            "oculto"
+
+        );
+
+    }
+
+);
+
+// Cerrar tocando fuera
+
+modalAcerca.addEventListener(
+
+    "click",
+
+    (e)=>{
+
+        if(
+
+            e.target === modalAcerca
+
+        ){
+
+            modalAcerca.classList.add(
+
+                "oculto"
+
+            );
+
+        }
+
+    }
 
 );
 
