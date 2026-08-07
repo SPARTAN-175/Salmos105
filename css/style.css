@@ -182,33 +182,47 @@ main{
 
 }
 
-#contenedorAcordes{
+#contenedorAcordes {
 
-    display:grid;
+    width: 100%;
+    max-width: 100%;
 
-    grid-template-columns:repeat(6,1fr);
+    box-sizing: border-box;
 
-    gap:8px;
+    display: flex;
 
-    width:100%;
+    flex-wrap: nowrap;
+
+    gap: 10px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding: 4px 2px 10px;
+
+    scrollbar-width: thin;
 
 }
 
-.acorde{
+.acorde {
 
-    display:flex;
+    flex: 0 0 auto;
 
-    flex-direction:column;
+    display: flex;
 
-    align-items:center;
+    flex-direction: column;
 
-    gap:5px;
+    align-items: center;
+
+    gap: 5px;
 
 }
 
 .acorde select{
 
     width:54px;
+
+    max-width: 100%;
 
     font-size:13px;
 
@@ -264,11 +278,15 @@ main{
 
 }
 
-.imagenAcorde img{
+.imagenAcorde img {
 
-    width:55px;
+    width: 55px;
 
-    display:block;
+    max-width: 100%;
+
+    height: auto;
+
+    display: block;
 
 }
 
